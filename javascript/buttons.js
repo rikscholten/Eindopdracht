@@ -50,5 +50,5 @@ document.getElementsByClassName("back_button")[0].addEventListener("click", func
 });
 
 document.getElementsByClassName("randomize_pieces")[0].addEventListener("click", function(){ 
-	playField.randomPieces();
+	playField.randomLayout();
 });

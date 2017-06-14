@@ -65,14 +65,39 @@ class PlayField {
 
     }
 
+    randomLayout(){
+        
+        var units = [[6], [1], [1], [2], [3], [4], [4], [4], [5], [8], [1], [1]];
+
+        for (var x = 6; x < 10; x++) {
+            for (var y = 0; y < 10; y++) {
+                while(true){
+                    
+                    var random = Math.floor((Math.random() * 12));
+                    if(units[random] > 0){
+                        field[x][y] = random;
+                        units[random]--;
+                        break
+                    }
+                }
+            }
+        }
+        for (var i = 0; i < units.length; i++) {
+            console.log(units[i]);
+        };
+        for (var x = 6; x < 10; x++) {
+            for (var y = 0; y < 10; y++) {
+                console.log(field[x][y]);
+            }
+        }
+        
+        
+    }
+
     gettilePiece(x,y)
     {
         return field[x][y];
     }
-
-
-
-
 }
 var field = new Array(10);
 playField = new PlayField();
