@@ -27,7 +27,7 @@ class Tiles {
 		div.setAttribute("style" , "top:" + this.y +"0%; left:" + this.x + "0%;");
         div.setAttribute("ondrop" , "drop(event)");
         div.setAttribute("ondragover" , "allowDrop(event)");
-
+		div.chang
 		div.onclick = function() { alert(y +", "+ x); };
 	}
 

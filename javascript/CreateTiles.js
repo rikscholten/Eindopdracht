@@ -60,9 +60,14 @@ class PlayField {
         img.setAttribute("src", "Images/red_"+piece+".png");
         img.setAttribute("id", "drag"+x+"and"+y);
         img.setAttribute("draggable", "true");
-        img.setAttribute("ondragstart", "drag(event)");
+        img.setAttribute("ondragstart", "drag(event,"+x+","+y+","+piece+")");
         div.appendChild(img);
 
+    }
+
+    gettilePiece(x,y)
+    {
+        return field[x][y];
     }
 
 
