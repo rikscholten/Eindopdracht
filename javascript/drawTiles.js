@@ -1,13 +1,21 @@
 
 class Tiles {
-	constructor(){
-		
 
-		
-	}
+	constructor(){
+
+        for (var y = 0; y < 10; y++) {
+            for (var x = 0; x < 10; x++) {
+                this.makeTile(x,y);
+            }
+        }
+
+
+
+
+    }
 
 	makeTile(x, y){
-		console.log(x,y)
+		// console.log(x,y)
 
 		this.x = x;
 		this.y = y;
@@ -16,14 +24,12 @@ class Tiles {
 		this.div = div;
 		div.setAttribute("class", "tile");
 		document.getElementsByClassName("tiles")[0].appendChild(div);
-		div.setAttribute("style", "left:" + this.x +"0%; top:" + this.y + "0%;");
+		div.setAttribute("style" , "top:" + this.y +"0%; left:" + this.x + "0%;");
+
+		div.onclick = function() { alert(y +", "+ x); };
 	}
+
 }
 
 var board = new Tiles();
 
-for (x = 0; x < 10; x++) { 
-	for (y = 0; y < 10; y++) { 
-    	board.makeTile(x,y);
-	}
-}
