@@ -301,7 +301,21 @@ img.loading {
     cursor: move;
 }
 
-.piece img {
+.tiles img {
+    display: block;
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+}
+
+.pieces img {
+    display: block;
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+}
+
+.board img {
     display: block;
     width: 90%;
     height: 90%;

@@ -49,15 +49,20 @@ class PlayField {
         var div = document.createElement("DIV");
         this.div = div;
         div.setAttribute("class", "piece draggable");
-        var xpos = (x*8);
-        var ypos = 100+(y*3);
+
+        var xpos = (x*10);
+        var ypos = (y*10);
         document.getElementsByClassName("pieces")[0].appendChild(div);
         div.setAttribute("style" , "top: "+xpos+"%; left:"+ypos+"%;");
         div.onclick = function() { alert(x +", "+ y); };
         var img = document.createElement("img");
         this.img = img;
         img.setAttribute("src", "Images/red_"+piece+".png");
+        img.setAttribute("id", "drag"+x+"and"+y);
+        img.setAttribute("draggable", "true");
+        img.setAttribute("ondragstart", "drag(event)");
         div.appendChild(img);
+
     }
 
 

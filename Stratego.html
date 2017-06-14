@@ -2,6 +2,7 @@
 <html>
   	<head>
     	<title>Stratego</title>
+		<script src="javascript/drag.js" defer></script>
 		<script src="javascript/drawTiles.js" defer></script>
 		<script src="javascript/CreateTiles.js" defer></script>
 		<script src="javascript/buttons.js" defer></script>
@@ -24,8 +25,7 @@
 	<div id="game" class="hidden screen from-right">
 					<button class="back_button">Back</button>
 			<div id="board">
-		      	<div class="tiles"></div>
-				<div class="pieces"></div>
+				<div class="tiles"></div>
 	    	</div>
 	    	<div id="history" class="box">
 		      	<h1>History</h1>
@@ -38,7 +38,9 @@
 
 			    <button class="randomize_pieces">Random layout</button>
 			    <button class="clear_board">Clear board</button>
-			    <button class="submit_board hidden">Submit board</button>
+			    <button class="submit_board">Submit board</button>
+
+				<div class="pieces"></div>
 		    </div>
 		    <div id="captured_pieces" class="box hidden">
 		    	<h1>Captured</h1>
