@@ -48,3 +48,7 @@ document.getElementsByClassName("back_button")[0].addEventListener("click", func
 	var game = document.getElementById("game");
 	game.className += " hidden";
 });
+
+document.getElementsByClassName("randomize_pieces")[0].addEventListener("click", function(){ 
+	playField.randomPieces();
+});
