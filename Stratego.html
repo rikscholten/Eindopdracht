@@ -4,15 +4,13 @@
     	<title>Stratego</title>
 		<script src="javascript/drawTiles.js" defer></script>
 		<script src="javascript/CreateTiles.js" defer></script>
-		<script
-				src="https://code.jquery.com/jquery-3.2.1.min.js"
-				integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-				crossorigin="anonymous"></script>
+		<script src="javascript/buttons.js" defer></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="Strat.css">
 	</head>
 	
 	<body>
-		<div id="games" class="hidden box screen from-left">
+	<div id="games" class="box screen from-left">
 		    <h1>Select a game</h1>
 
 		    <div class="gamelist">
@@ -23,7 +21,8 @@
 		    <button id="new_ai_game">New AI game</button>
 		    <button id="delete_games">Delete games</button>
 	  	</div>
-		<div id="game" class="screen from-right">
+	<div id="game" class="hidden screen from-right">
+					<button class="back_button">Back</button>
 			<div id="board">
 		      	<div class="tiles"></div>
 				<div class="pieces"></div>
