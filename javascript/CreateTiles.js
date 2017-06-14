@@ -27,15 +27,16 @@ class PlayField {
     TestField(){
         for (var x = 0; x < 10; x++) {
             for (var y = 0; y < 10; y++) {
-                console.log(field[x][y])
+                console.log(field[x][y]);
             }
         }
     }
     drawpieces(){
-
-        for (var x = 6; x < 10; x++) {
-            for (var y = 0; y < 10; y++) {
-                this.drawPiece(x,y,1);
+        var units = [['B', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'S', 'F'],[6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1]];
+        console.log(units[0].length)
+        for (var i=0; i < units[0].length; i++) {
+            for (var y = 0; y < units[1][i]; y++) {
+                this.drawPiece(i,y,units[0][i]);
             }
         }
     }
@@ -50,7 +51,7 @@ class PlayField {
         this.div = div;
         div.setAttribute("class", "piece draggable");
 
-        var xpos = (x*10);
+        var xpos = (x*7);
         var ypos = (y*10);
         document.getElementsByClassName("pieces")[0].appendChild(div);
         div.setAttribute("style" , "top: "+xpos+"%; left:"+ypos+"%;");
@@ -60,7 +61,16 @@ class PlayField {
         img.setAttribute("src", "Images/red_"+piece+".png");
         img.setAttribute("id", "drag"+x+"and"+y);
         img.setAttribute("draggable", "true");
-        img.setAttribute("ondragstart", "drag(event,"+x+","+y+","+piece+")");
+
+        img.setAttribute("ondragend", "dragstopped(event,this)");
+        if((piece=='B')||(piece=='S')||(piece=='F'))
+        {
+            img.setAttribute("ondragstart", "drag(event," + x + "," + y + ",'" + piece + "')");
+
+        }
+        else {
+            img.setAttribute("ondragstart", "drag(event," + x + "," + y + "," + piece + ")");
+        }
         div.appendChild(img);
 
     }
@@ -87,7 +97,7 @@ class PlayField {
         };
         for (var x = 6; x < 10; x++) {
             for (var y = 0; y < 10; y++) {
-                console.log(field[x][y]);
+                // console.log(field[x][y]);
             }
         }
         

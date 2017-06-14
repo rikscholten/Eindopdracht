@@ -1,8 +1,11 @@
 function allowDrop(ev) {
     ev.preventDefault();
 }
+
 var pievetodrop = 0;
+var  dragged = false;
 function drag(ev,x,y,piece) {
+    dragged = false;
     ev.dataTransfer.setData("text", ev.target.id);
     pievetodrop = piece;
 }
@@ -17,16 +20,25 @@ function drop(ev) {
     //     ev.target.appendChild(document.getElementById(data));
     //     field[newx][newy] = pievetodrop;
     // }
-    if(newx>5)
+    if(newx>5 && field[newx][newy]== ' ')
     {
+        console.log(document.getElementById(data));
         ev.target.appendChild(document.getElementById(data));
         field[newx][newy] = pievetodrop;
+        dragged = true;
     }
    console.log(field);
 
 }
 
-function denyDrop(ev) {
+function dragstopped(ev,t) {
+    if(dragged)
+    {
+        console.log('true')
+
+    }
+    else{
+        console.log('false')}
     ev.preventDefault();
 }
 
