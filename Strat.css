@@ -1,0 +1,400 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+@font-face {
+    font-family: 'titillium';
+}
+
+html, body {
+    cursor: default;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+html, body, button {
+    color: black;
+    font-family: 'titillium';
+}
+
+body {
+    background: linear-gradient(to right, rgba(255,0,0,0.7) , rgba(0,0,255,0.7));
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.loading * {
+    cursor: wait !important;
+}
+
+img.loading {
+    margin: 0 auto;
+    display: block;
+    margin-top: 20vh;
+}
+
+.templates {
+    display: none;
+}
+
+/* Logo */
+#logo {
+    display: block;
+    margin: 0 auto;
+    height: 15vh;
+}
+
+.screen {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 15vh;
+    margin-left: auto;
+    margin-right: auto;
+    transition: 0.5s all;
+}
+
+.box {
+    background:#6699ff;
+    box-shadow: 0 0 50px #444;
+    border-radius: 15px;
+    transition: 0.5s all;
+    /*overflow-y: scroll;*/
+}
+
+.box:not(.hidden) { /* visible */
+    opacity: 1;
+    transform: translate(0);
+}
+
+.hidden {
+    opacity: 0;
+    z-index: -1;
+}
+
+.from-right.hidden {
+    transform: perspective(1000px) translateX(25vw) rotateY(90deg);
+}
+
+.from-left.hidden {
+    transform: perspective(1000px) translateX(-25vw) rotateY(-90deg);
+}
+
+#api_key_box {
+    width: 60vw;
+    margin: 0 auto;
+    margin-top: 10vh;
+}
+
+#api_key_box input {
+    width: 80%;
+    text-align: center;
+    font-family: Courier;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 15px;
+    padding: 5px;
+    font-size: 20pt;
+}
+
+/* Lobby */
+#games {
+    width: 40vw;
+    min-width: 300px;
+    height: 75vh;
+}
+
+
+
+.box h1 {
+    text-align: center;
+}
+
+.box h1::after {
+    content: "";
+    display: block;
+    height: 5px;
+    background: linear-gradient(to right,
+        rgba(0,0,0,0) 0,
+        rgba(0,0,0,1) 51%,
+        rgba(0,0,0,0) 100%);
+    margin-bottom: 20px;
+}
+
+#games .game {
+    color: #eee;
+    font-size: 8pt;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    background-color: orange;
+    background-size: cover;
+    background-position: 50% 40%;
+    min-height: 7vh;
+    cursor: pointer;
+    transition: 0.2s all;
+    perspective: 500px;
+}
+
+#games .game.waiting_for_an_opponent {
+    cursor: default;
+}
+
+#games .game:hover {
+    color: white;
+    font-size: 9pt;
+    min-height: 8vh;
+}
+
+#games button {
+    outline: 0;
+    position: absolute;
+    bottom: 0;
+    width: 33%;
+    border: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px;
+    font-size: 12pt;
+    background: none;
+    cursor: pointer;
+    transition: 0.5s all;
+}
+
+#games button:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+#games button#new_game {
+    left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 15px;
+}
+
+#games button#new_ai_game {
+    left: 33%;
+}
+
+#games button#delete_games {
+    right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 15px;
+}
+
+#games button#delete_games:hover {
+    background: rgba(255, 0, 0, 0.3);
+}
+
+.back_button {
+    position: absolute;
+    top: -45px;
+    left: 5vw;
+    border: 0;
+    border-radius: 10px;
+    font-size: 12pt;
+    padding: 5px 10px;
+    color: white;
+    background-color: #258227;
+    cursor: pointer;
+    outline: 0;
+}
+
+
+#game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Board */
+#board {
+    background-image: url("Images/board.jpg");
+    background-size: 100% 100%;
+    position: relative;
+
+    width: 80vh;
+    box-shadow: 0 0 50px #222;
+    order: 1;
+    z-index: 1;
+}
+
+#board > *:first-child::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.tile {
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    border: 1px solid black;
+}
+
+.tiles {
+    width: 100%;
+    height: 100%;
+}
+
+.tile.invalid {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#state {
+    position: absolute;
+    bottom: -5vh;
+    z-index: 2;
+    color: white;
+    height: 5vh;
+    font-size: 3vh;
+    width: 100%;
+    left:0;
+    text-align: center
+}
+
+#state .state {
+    font-weight: bold;
+}
+
+/**
+ * Pieces
+ */
+
+ .pieces {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.piece {
+    transition: 0.3s all;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10%;
+    height: 10%;
+    box-sizing: border-box;
+}
+
+.piece.opponent {
+    z-index: 1;
+}
+
+.piece.player {
+    z-index: 2;
+}
+
+.piece.draggable {
+    cursor: move;
+}
+
+.piece img {
+    display: block;
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+}
+
+/* history */
+#history {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    order: 0;
+    width: 20vw;
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+#history .piecetype {
+    font-weight: bold;
+}
+
+#history li {
+    padding-left: 5px;
+    list-style-position: inside;
+}
+
+#history li:hover {
+    background-color: #278a28;
+}
+
+#history .piecetype.player {
+    color: #f50000;
+}
+
+#history .piecetype.opponent {
+    color: blue;
+}
+
+#placing_pieces button {
+    display: block;
+    width: 100%;
+    background: none;
+    border: 0;
+    outline: 0;
+    font-size: 15pt;
+    cursor: pointer;
+    transition: 0.5s all;
+}
+
+#placing_pieces button:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* captured pieces */
+#captured_pieces, #placing_pieces {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    order: 2;
+    width: 20vw;
+    height: 80vh;
+}
+
+#captured_pieces.hidden, #placing_pieces.hidden, #history.hidden {
+    width: 0;
+}
+
+#user_info {
+    position: fixed;
+    left: 3px;
+    bottom: 3px;
+    color: white;
+    text-shadow: 0 0 2px black;
+    opacity: 1;
+    transition: 1s all;
+}
+
+#user_info.hidden {
+    opacity: 0;
+}
+
+#user_info a {
+    color: #eee;
+    font-size: 0.7em;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+/* Animations */
+@keyframes rotate-in {
+  0% {
+    opacity: 0;
+    transform: perspective( 1000px ) rotateY(-90deg)
+  }
+  100% {
+    opacity: 1;
+    transform: perspective( 1000px ) rotateY(0deg)
+  }
+}

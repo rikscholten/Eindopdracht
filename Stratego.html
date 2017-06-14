@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+    	<title>Stratego</title>
+		<script src="javascript/drawTiles.js" defer></script>
+		<link rel="stylesheet" type="text/css" href="Strat.css">
+	</head>
+	<body>
+		<div id="game" class="screen from-right">
+			<div id="board">
+		      	<div class="tiles"></div>
+	    	</div>
+	    	<div id="history" class="box">
+		      	<h1>History</h1>
+
+		      	<ol reversed>
+		      	</ol>
+		    </div>
+		    <div id="placing_pieces" class="box">
+			    <h1>Pieces</h1>
+
+			    <button class="randomize_pieces">Random layout</button>
+			    <button class="clear_board">Clear board</button>
+			    <button class="submit_board hidden">Submit board</button>
+		    </div>
+		    <div id="captured_pieces" class="box hidden">
+		    	<h1>Captured</h1>
+		    </div>
+	    </div>
+	</body>
+</html>
