@@ -77,29 +77,34 @@ class PlayField {
 
     randomLayout(){
         
-        var units = [[6], [1], [1], [2], [3], [4], [4], [4], [5], [8], [1], [1]];
+        var unitsCount = [[6], [1], [1], [2], [3], [4], [4], [4], [5], [8], [1], [1]];
+        var units = ['B', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'S', 'F'];
+
 
         for (var x = 6; x < 10; x++) {
             for (var y = 0; y < 10; y++) {
                 while(true){
                     
                     var random = Math.floor((Math.random() * 12));
-                    if(units[random] > 0){
-                        field[x][y] = random;
-                        units[random]--;
+                    if(unitsCount[random] > 0){
+                        console.log(units[random]);
+                        field[x][y] = units[random];
+                        unitsCount[random]--;
                         break
                     }
                 }
             }
         }
-        for (var i = 0; i < units.length; i++) {
-            console.log(units[i]);
+        
+        for (var i = 0; i < unitsCount.length; i++) {
+            console.log(unitsCount[i]);
         };
+        /*
         for (var x = 6; x < 10; x++) {
             for (var y = 0; y < 10; y++) {
                 // console.log(field[x][y]);
             }
-        }
+        }*/
         
         
     }
