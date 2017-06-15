@@ -20,16 +20,17 @@ class PlayField {
     }
 
     newPlayfield(){
-        for (var x = 0; x < 10; x++) {
-            for (var y = 0; y < 10; y++) {
+        for (var y = 0; y < 10; y++) {
+            for (var x = 0; x < 10; x++) {
                 this.createField(x,y,' ');
             }
         }
     }
 
     testField(){
-        for (var x = 0; x < 10; x++) {
-            for (var y = 0; y < 10; y++) {
+        
+        for (var y = 0; y < 10; y++) {
+            for (var x = 0; x < 10; x++) {
                 console.log(field[x][y]);
             }
         }
@@ -38,28 +39,34 @@ class PlayField {
 
 
         //console.log(units[0].length)
-        for (var i=0; i < this.units.length; i++) {
-            for (var y = 0; y < this.unitsCount[i]; y++) {
-                this.drawPiece(i,y, this.units[i]);
+        
+        for (var y = 0; y < this.units.length; y++) {
+            for (var x = 0; x < this.unitsCount[y]; x++) {
+                this.drawPiece(x,y, this.units[y], false);
             }
         }
     }
 
-    drawPiece(x,y,piece){
+    drawPiece(x,y,piece,randomLay){
         //
         // this.x = x;
         // this.y = y;
         // this.piece = piece;
 
-        var div = document.createElement("DIV");
-        this.div = div;
-        div.setAttribute("class", "piece draggable");
+        
+        if(!randomLay){
+            var div = document.createElement("DIV");
+            this.div = div;
+            div.setAttribute("class", "piece draggable");
 
-        var xpos = (x*7);
-        var ypos = (y*10);
-        document.getElementsByClassName("pieces")[0].appendChild(div);
-        div.setAttribute("style" , "top: "+xpos+"%; left:"+ypos+"%;");
-        div.onclick = function() { alert(x +", "+ y); };
+            var xpos = (x*10);
+            var ypos = (y*7);
+            document.getElementsByClassName("pieces")[0].appendChild(div);
+            div.setAttribute("style" , "top: "+ypos+"%; left:"+xpos+"%;");
+            div.onclick = function() { alert(x +", "+ y); };
+        } 
+            
+
         var img = document.createElement("img");
         this.img = img;
         img.setAttribute("src", "Images/red_"+piece+".png");
@@ -75,11 +82,26 @@ class PlayField {
         else {
             img.setAttribute("ondragstart", "drag(event," + x + "," + y + "," + piece + ")");
         }
-        div.appendChild(img);
+        
+
+        if(randomLay){
+            document.getElementsByClassName("tile")[(x*10)+y].appendChild(img);
+        }
+        else{
+            div.appendChild(img);
+        }
 
     }
 
     randomLayout(){
+        $(".piece").removeClass();
+        $(".draggable").removeClass();
+        for (var y = 0; y < 15; y++) {
+            for (var x = 0; x < 15; x++) {
+                $("#drag"+x+"and"+y).remove();
+            }
+        }
+
         for (var x = 6; x < 10; x++) {
             for (var y = 0; y < 10; y++) {
                 while(true){
@@ -87,7 +109,7 @@ class PlayField {
                     var random = Math.floor((Math.random() * 12));
                     if(this.unitsCount[random] > 0){
                         console.log(this.units[random]);
-                        this.createField(x, y, this.units[random]);
+                        this.drawPiece(x, y, this.units[random], true );
                         this.unitsCount[random]--;
                         break
                     }
@@ -103,8 +125,8 @@ class PlayField {
     clearField(){
         $(".piece").removeClass();
         $(".draggable").removeClass();
-        for (var x=0; x < this.units.length; x++) {
-            for (var y = 0; y < this.unitsCount[x]; y++) {
+        for (var y = 0; y < 15; y++) {
+            for (var x = 0; x < 15; x++) {
                 $("#drag"+x+"and"+y).remove();
             }
         }

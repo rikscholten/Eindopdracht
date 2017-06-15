@@ -28,7 +28,7 @@ class Tiles {
         div.setAttribute("ondrop" , "drop(event)");
         div.setAttribute("ondragover" , "allowDrop(event)");
 		div.chang
-		div.onclick = function() { alert(y +", "+ x); };
+		div.onclick = function() { alert(x +", "+ y); };
 	}
 
 }
