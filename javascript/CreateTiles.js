@@ -25,6 +25,7 @@ class PlayField {
                 this.createField(x,y,' ');
             }
         }
+
     }
 
     testField(){
@@ -118,6 +119,8 @@ class PlayField {
             }
         }
 
+
+
         this.unitsCount = [[6], [1], [1], [2], [3], [4], [4], [4], [5], [8], [1], [1]];
         this.testField();
         
@@ -141,6 +144,19 @@ class PlayField {
         return field[x][y];
     }
 }
+
+function setOpponent()
+{
+    for (var x = 0; x < 5; x++) {
+        for (var y = 0; y < 10; y++) {
+
+            field[x][y] = 0;
+
+        }
+    }
+}
+
+
 
 var field = new Array(10);
 playField = new PlayField();
