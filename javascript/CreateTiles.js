@@ -10,33 +10,35 @@ class PlayField {
 
     }
 
-    CreateField(x, y,piece){
+    createField(x, y,piece){
 
         field[x][y]= piece;
 
     }
 
-    NewPlayfield(){
+    newPlayfield(){
         for (var x = 0; x < 10; x++) {
             for (var y = 0; y < 10; y++) {
-                this.CreateField(x,y,' ');
+                this.createField(x,y,' ');
             }
         }
     }
 
-    TestField(){
+    testField(){
         for (var x = 0; x < 10; x++) {
             for (var y = 0; y < 10; y++) {
                 console.log(field[x][y]);
             }
         }
     }
-    drawpieces(){
-        var units = [['B', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'S', 'F'],[6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1]];
-        console.log(units[0].length)
-        for (var i=0; i < units[0].length; i++) {
-            for (var y = 0; y < units[1][i]; y++) {
-                this.drawPiece(i,y,units[0][i]);
+    drawPieces(){
+        var unitsCount = [[6], [1], [1], [2], [3], [4], [4], [4], [5], [8], [1], [1]];
+        var units = ['B', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'S', 'F'];
+
+        //console.log(units[0].length)
+        for (var i=0; i < units.length; i++) {
+            for (var y = 0; y < unitsCount[i]; y++) {
+                this.drawPiece(i,y, units[i]);
             }
         }
     }
@@ -88,7 +90,7 @@ class PlayField {
                     var random = Math.floor((Math.random() * 12));
                     if(unitsCount[random] > 0){
                         console.log(units[random]);
-                        field[x][y] = units[random];
+                        this.createField(x,y,units[random]);
                         unitsCount[random]--;
                         break
                     }
@@ -96,16 +98,7 @@ class PlayField {
             }
         }
         
-        for (var i = 0; i < unitsCount.length; i++) {
-            console.log(unitsCount[i]);
-        };
-        /*
-        for (var x = 6; x < 10; x++) {
-            for (var y = 0; y < 10; y++) {
-                // console.log(field[x][y]);
-            }
-        }*/
-        
+        this.testField();
         
     }
 
@@ -116,7 +109,7 @@ class PlayField {
 }
 var field = new Array(10);
 playField = new PlayField();
-playField.NewPlayfield();
-playField.drawpieces();
+playField.newPlayfield();
+playField.drawPieces();
 
 
