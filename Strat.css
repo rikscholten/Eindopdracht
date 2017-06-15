@@ -157,6 +157,11 @@ img.loading {
     min-height: 8vh;
 }
 
+#games p {
+    color: green;
+    font-size: 15pt;
+}
+
 #games button {
     outline: 0;
     position: absolute;

@@ -6,18 +6,9 @@ document.getElementById("new_game").addEventListener("click", function(){
 	document.getElementsByClassName('gamelist')[0].appendChild(div);
 });
 
-document.getElementById("new_ai_game").addEventListener("click", function(){ 
-	var div = document.createElement('div');
-
-	div.className = 'game waiting_for_pieces';
-
-	document.getElementsByClassName('gamelist')[0].appendChild(div);
-
-	var classname = document.getElementsByClassName("waiting_for_pieces");
-
-	for (var i = 0; i < classname.length; i++) {
-	    classname[i].addEventListener('click', myFunction, false);
-	}
+document.getElementById("new_ai_game").addEventListener("click", function(){
+    newAIgame();
+    gameOverview();
 });
 
 document.getElementById("delete_games").addEventListener("click", function(){ 
@@ -43,6 +34,7 @@ for (var i = 0; i < classname.length; i++) {
 
 document.getElementsByClassName("back_button")[0].addEventListener("click", function(){ 
 	var games = document.getElementById("games");
+
 	games.className = "box screen from-left";
 
 	var game = document.getElementById("game");
