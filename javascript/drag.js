@@ -2,12 +2,12 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
-var pievetodrop = 0;
+var piecetodrop = 0;
 var  dragged = false;
 function drag(ev,x,y,piece) {
     dragged = false;
     ev.dataTransfer.setData("text", ev.target.id);
-    pievetodrop = piece;
+    piecetodrop = piece;
 }
 
 function drop(ev) {
@@ -18,13 +18,13 @@ function drop(ev) {
     //controle voor verplaatsennaar water
     // if(!((newx == 4 && newy ==2)||(newx == 4 && newy ==3)||(newx == 4 && newy ==3)||(newx == 5 && newy ==2)||(newx == 5 && newy ==3)||(newx == 4 && newy ==6)||(newx == 4 && newy ==7)||(newx == 5 && newy ==6)||(newx == 5 && newy ==7))){
     //     ev.target.appendChild(document.getElementById(data));
-    //     field[newx][newy] = pievetodrop;
+    //     field[newx][newy] = piecetodrop;
     // }
     if(newx>5 && field[newx][newy]== ' ')
     {
         console.log(document.getElementById(data));
         ev.target.appendChild(document.getElementById(data));
-        field[newx][newy] = pievetodrop;
+        field[newx][newy] = piecetodrop;
         dragged = true;
     }
    console.log(field);

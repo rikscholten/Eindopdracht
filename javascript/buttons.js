@@ -45,18 +45,28 @@ $('.back_button').on("click", function(){
 /* ingame buttons */
 
 $('.randomize_pieces').on( "click", function(){
-    console.log('test')
-	playField.randomLayout();
+
+    if(currentstate=='waiting_for_pieces') {
+        console.log('test')
+        playField.randomLayout();
+    }
 });
 
 $('.clear_board').on("click", function(){
-	playField.clearField();
+
+    if(currentstate=='waiting_for_pieces') {
+        playField.clearField();
+    }
 });
 
 $('.submit_board').on("click", function(){
-    playField.submitBoard();
-
-    setTimeout(function(){playField.drawBoard(currentid)},500);
+	if(currentstate=='waiting_for_pieces') {
+        currentstate='my_turn';
+        playField.submitBoard();
+        setTimeout(function () {
+            playField.drawBoard(currentid)
+        }, 500);
+    }
 });
 
 /* ------END------*/

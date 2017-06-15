@@ -59,7 +59,6 @@ class PlayField {
 
             $('.pieces')[0].appendChild(div);
             div.setAttribute("style" , "top: "+ypos+"%; left:"+xpos+"%;");
-            div.onclick = function() { alert(x +", "+ y); };
         } 
             
 
@@ -104,8 +103,6 @@ class PlayField {
 
 
     drawBoard(id){
-        $(".piece").removeClass();
-        $(".pieces").innerHTML ='';
         for (var y = 0; y < 15; y++) {
             for (var x = 0; x < 15; x++) {
                 $("#drag"+x+"and"+y).remove();
@@ -131,12 +128,13 @@ class PlayField {
 
 
         });
+        $(".pieces").empty();
         return 'x'
     }
 
 
     randomLayout(){
-        $(".piece").removeClass();
+        $(".pieces").empty();
         $(".draggable").removeClass();
         for (var y = 0; y < 15; y++) {
             for (var x = 0; x < 15; x++) {
@@ -166,16 +164,18 @@ class PlayField {
     }
 
     clearField(){
-        $(".piece").removeClass();
-        $(".draggable").removeClass();
-        for (var y = 0; y < 15; y++) {
-            for (var x = 0; x < 15; x++) {
-                $("#drag"+x+"and"+y).remove();
+        if(currentstate=='waiting_for_pieces') {
+            $(".piece").removeClass();
+            $(".draggable").removeClass();
+            for (var y = 0; y < 15; y++) {
+                for (var x = 0; x < 15; x++) {
+                    $("#drag" + x + "and" + y).remove();
+                }
             }
-        }
 
-        this.newPlayfield();
-        this.drawPieces();
+            this.newPlayfield();
+            this.drawPieces();
+        }
         
     }
 
