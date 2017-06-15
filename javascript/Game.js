@@ -37,7 +37,7 @@ function gameOverview()
 
         });
 
-    });
+    })
 
 
 }
@@ -47,9 +47,7 @@ function deleteAllGames()
     $.ajax({
         url: 'https://strategoavans.herokuapp.com/api/games?api_key=' + api_key,
         type: 'DELETE'
-    })
-    $('.gamelist').html('');
-
+    });
 }
 
 function getIdGame()

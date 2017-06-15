@@ -7,13 +7,13 @@ document.getElementById("new_game").addEventListener("click", function(){
 });
 
 $('#new_ai_game').on("click", function(){
-     newAIgame();
-    gameOverview();
+    newAIgame();
+    setTimeout(function(){gameOverview()},200);
 });
 
 $('#delete_games').on("click", function(){
     deleteAllGames();
-    gameOverview();
+    setTimeout(function(){gameOverview()},200);
 });
 
 /* enter a game */
@@ -55,6 +55,8 @@ $('.clear_board').on("click", function(){
 
 $('.submit_board').on("click", function(){
     playField.submitBoard();
+
+    setTimeout(function(){playField.drawBoard(currentid)},500);
 });
 
 /* ------END------*/
