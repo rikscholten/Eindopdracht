@@ -55,7 +55,7 @@ class PlayField {
             var xpos = (x*10);
             var ypos = (y*7);
 
-            $('#pieces')[0].appendChild(div);
+            $('.pieces')[0].appendChild(div);
             div.setAttribute("style" , "top: "+ypos+"%; left:"+xpos+"%;");
             div.onclick = function() { alert(x +", "+ y); };
         } 

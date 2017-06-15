@@ -6,12 +6,12 @@ document.getElementById("new_game").addEventListener("click", function(){
 	document.getElementsByClassName('gamelist')[0].appendChild(div);
 });
 
-document.getElementById("new_ai_game").addEventListener("click", function(){
+$('#new_ai_game').on("click", function(){
      newAIgame();
     gameOverview();
 });
 
-document.getElementById("delete_games").addEventListener("click", function(){
+$('#delete_games').on("click", function(){
     deleteAllGames();
     gameOverview();
 });
@@ -33,7 +33,7 @@ for (var i = 0; i < classname.length; i++) {
 }
 /*--------------*/
 
-document.getElementsByClassName("back_button")[0].addEventListener("click", function(){ 
+$('.back_button').on("click", function(){
 	var games = document.getElementById("games");
 
 	games.className = "box screen from-left";
@@ -44,11 +44,12 @@ document.getElementsByClassName("back_button")[0].addEventListener("click", func
 
 /* ingame buttons */
 
-document.getElementsByClassName("randomize_pieces")[0].addEventListener("click", function(){ 
+$('body').on( "click", ".randomize_pieces", function(){
+    console.log('test')
 	playField.randomLayout();
 });
 
-document.getElementsByClassName("clear_board")[0].addEventListener("click", function(){ 
+$('.clear_board').on("click", function(){
 	playField.clearField();
 });
 
