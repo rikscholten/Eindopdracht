@@ -39,6 +39,11 @@ function deleteAllGames()
    
 }
 
+function getIdGame()
+{
+
+}
+
 
 gameOverview()
 
