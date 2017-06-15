@@ -7,7 +7,7 @@ document.getElementById("new_game").addEventListener("click", function(){
 });
 
 document.getElementById("new_ai_game").addEventListener("click", function(){
-    newAIgame();
+     newAIgame();
     gameOverview();
 });
 

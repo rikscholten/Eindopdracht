@@ -5,12 +5,12 @@ function submitAIGame()
 
 function gameOverview()
 {
+
     $.ajax({
         url: 'https://strategoavans.herokuapp.com/api/games?api_key=' + api_key
     }).done(function (games) {
         $('.gamelist').html('');
         jQuery.each(games, function() {
-            console.log(this.state)
             var div = document.createElement('div');
 
             div.className = 'game ' + this.state + '';
@@ -20,7 +20,7 @@ function gameOverview()
             var text = document.createElement('p');
             text.innerHTML='Status: '+this.state;
             div.appendChild(text);
-            $('.gamelist')[0].appendChild(div);
+            $('.gamelist').append(div);
 
         });
 
@@ -36,7 +36,7 @@ function deleteAllGames()
         type: 'DELETE'
     })
     $('.gamelist').html('');
-   
+
 }
 
 function getIdGame()
@@ -46,4 +46,3 @@ function getIdGame()
 
 
 gameOverview()
-

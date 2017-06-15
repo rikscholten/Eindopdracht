@@ -2,6 +2,7 @@
 <html>
   	<head>
     	<title>Stratego</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="javascript/drag.js" defer></script>
 		<script src="javascript/drawTiles.js" defer></script>
 		<script src="javascript/CreateTiles.js" defer></script>
@@ -9,12 +10,11 @@
 		<script src="javascript/api.js" defer></script>
 		<script src="javascript/apiHandlers.js" defer></script>
 		<script src="javascript/Game.js" defer></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="Strat.css">
 	</head>
 	
 	<body>
-	<div id="games" class="hidden box screen from-left">
+	<div id="games" class=" box screen from-left">
 		    <h1>Select a game</h1>
 
 		    <div class="gamelist" >
@@ -24,7 +24,7 @@
 		    <button id="new_ai_game">New AI game</button>
 		    <button id="delete_games">Delete games</button>
 	  	</div>
-	<div id="game" class="screen from-right">
+	<div id="game" class=" hidden screen from-right">
 		<button class="back_button">Back</button>
 			<div id="board">
 				<div class="tiles"></div>
