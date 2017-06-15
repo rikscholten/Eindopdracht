@@ -29,19 +29,16 @@ function gameOverview()
 
 }
 
-function deleteGames()
+function deleteAllGames()
 {
     $.ajax({
-        url: 'https://strategoavans.herokuapp.com/api/games?api_key=' + api_key
-    }).done(function (games) {
-        $('.gamelist').html('');
-        jQuery.each(games, function() {
-            this.delete();
-
-        });
-
-    });
+        url: 'https://strategoavans.herokuapp.com/api/games?api_key=' + api_key,
+        type: 'DELETE'
+    })
+    $('.gamelist').html('');
+   
 }
 
 
 gameOverview()
+

@@ -11,8 +11,9 @@ document.getElementById("new_ai_game").addEventListener("click", function(){
     gameOverview();
 });
 
-document.getElementById("delete_games").addEventListener("click", function(){ 
-	$('.game').remove();
+document.getElementById("delete_games").addEventListener("click", function(){
+    deleteAllGames();
+    gameOverview();
 });
 
 /* enter a game */

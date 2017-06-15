@@ -1,10 +1,11 @@
 
+
 var api_key = 'eNA67yFTZ3FV5xVTRnrbK8bfyAkoOIQJ';
 
 // Haal games op
 function getgames()
 {
-   $.ajax({
+    $.ajax({
         url: 'https://strategoavans.herokuapp.com/api/games?api_key=' + api_key
     }).done(function (gamess) {
 
@@ -25,4 +26,3 @@ function newAIgame()
         console.log('New game:', game);
     });
 }
-
