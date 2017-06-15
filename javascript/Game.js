@@ -12,7 +12,6 @@ function gameOverview()
         $('.gamelist').html('');
         jQuery.each(games, function() {
             var div = document.createElement('div');
-
             div.className = 'game ' + this.state + '';
             var text = document.createElement('p');
             text.innerHTML='Opponent: '+this.opponent;
@@ -20,6 +19,9 @@ function gameOverview()
             var text = document.createElement('p');
             text.innerHTML='Status: '+this.state;
             div.appendChild(text);
+            div.addEventListener("click", function(){
+                console.log("dit is game"+this.id+"")
+            });
             $('.gamelist').append(div);
 
         });
