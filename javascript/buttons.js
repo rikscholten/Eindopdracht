@@ -49,6 +49,14 @@ document.getElementsByClassName("back_button")[0].addEventListener("click", func
 	game.className += " hidden";
 });
 
+/* ingame buttons */
+
 document.getElementsByClassName("randomize_pieces")[0].addEventListener("click", function(){ 
 	playField.randomLayout();
 });
+
+document.getElementsByClassName("clear_board")[0].addEventListener("click", function(){ 
+	playField.clearField();
+});
+
+/* ------END------*/
