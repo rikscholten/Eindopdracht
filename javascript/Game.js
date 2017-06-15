@@ -19,8 +19,9 @@ function gameOverview()
             var text = document.createElement('p');
             text.innerHTML='Status: '+this.state;
             div.appendChild(text);
+            var id = this.id;
             div.addEventListener("click", function(){
-                console.log("dit is game"+this.id+"")
+                console.log("dit is game: "+id+"")
             });
             $('.gamelist').append(div);
 
