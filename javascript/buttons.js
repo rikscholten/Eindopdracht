@@ -44,7 +44,7 @@ $('.back_button').on("click", function(){
 
 /* ingame buttons */
 
-$('body').on( "click", ".randomize_pieces", function(){
+$('.randomize_pieces').on( "click", function(){
     console.log('test')
 	playField.randomLayout();
 });
