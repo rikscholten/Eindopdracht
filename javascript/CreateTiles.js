@@ -86,6 +86,7 @@ class PlayField {
 
         if(randomLay){
             document.getElementsByClassName("tile")[(x*10)+y].appendChild(img);
+            field[x][y] = piece;
         }
         else{
             div.appendChild(img);
