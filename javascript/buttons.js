@@ -54,7 +54,6 @@ $('.clear_board').on("click", function(){
 });
 
 $('.submit_board').on("click", function(){
-	console.log('submit');
     playField.submitBoard();
 });
 

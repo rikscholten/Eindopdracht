@@ -28,6 +28,7 @@ function gameOverview()
                 console.log("dit is game: "+id+"")
                 currentid=id;
                 currentstate=state;
+                currentopponent=opponent;
                 $("#games").addClass("hidden");
 
                 $("#game").removeClass("hidden");

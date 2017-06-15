@@ -32,7 +32,7 @@ class PlayField {
         
         for (var y = 0; y < 10; y++) {
             for (var x = 0; x < 10; x++) {
-                console.log(field[x][y]);
+                // console.log(field[x][y]);
             }
         }
     }
@@ -44,6 +44,8 @@ class PlayField {
             }
         }
     }
+
+
 
     drawPiece(x,y,piece,randomLay){
         
@@ -63,11 +65,23 @@ class PlayField {
 
         var img = document.createElement("img");
         this.img = img;
-        img.setAttribute("src", "Images/red_"+piece+".png");
-        img.setAttribute("id", "drag"+x+"and"+y);
-        img.setAttribute("draggable", "true");
+        if(piece==" ")
+        {
+            console.log('empty');
+        }
+        else if(piece=='O')
+        {
+            img.setAttribute("src", "Images/blue.png");
 
-        img.setAttribute("ondragend", "dragstopped(event,this)");
+        }
+        else {
+            img.setAttribute("src", "Images/red_" + piece + ".png");
+            img.setAttribute("id", "drag" + x + "and" + y);
+            img.setAttribute("draggable", "true");
+            img.setAttribute("ondragend", "dragstopped(event,this)");
+        }
+
+
         if((piece=='B')||(piece=='S')||(piece=='F'))
         {
             img.setAttribute("ondragstart", "drag(event," + x + "," + y + ",'" + piece + "')");
@@ -88,6 +102,30 @@ class PlayField {
 
     }
 
+
+    drawBoard(id){
+        //https://stackoverflow.com/questions/34642796/access-class-function-inside-ajax-success
+        var me = this;
+        $.ajax({
+            url: 'https://strategoavans.herokuapp.com/api/games/'+id+'?api_key=' + api_key
+        }).done(function (game) {
+            console.log(game.board[0][0]);
+
+
+            for (var x = 0; x < 10; x++) {
+                for (var y = 0; y < 10; y++) {
+                    me.drawPiece(x,y,''+game.board[x][y]+'', true);
+
+
+                }
+            }
+
+
+        });
+        return 'x'
+    }
+
+
     randomLayout(){
         $(".piece").removeClass();
         $(".draggable").removeClass();
@@ -103,7 +141,6 @@ class PlayField {
                     
                     var random = Math.floor((Math.random() * 12));
                     if(this.unitsCount[random] > 0){
-                        console.log(this.units[random]);
                         this.drawPiece(x, y, this.units[random], true );
                         this.unitsCount[random]--;
                         break
@@ -143,6 +180,7 @@ class PlayField {
         if(this.checkBoard()) {
             if (currentopponent == 'ai')
             {
+
                 var startBoard=new Array(4);
                 for(var i =0;i<4;i++)
                 {
@@ -151,18 +189,15 @@ class PlayField {
 
 
 
-
                 $.ajax({
                     url: 'https://strategoavans.herokuapp.com/api/games/'+currentid+'/start_board?api_key=' + api_key,
                     method: 'POST',
-                    dataType: 'array',
                     contentType: "application/json",
                     data :JSON.stringify(startBoard),
 
-                })
-
-
-
+                }).done(function (game) {
+                    console.log('submit');
+                });
 
 
 
@@ -185,6 +220,7 @@ class PlayField {
                 }
             }
         }
+        console.log('filled: '+filled)
         return filled;
     }
 }
@@ -201,9 +237,9 @@ function setOpponent()
 }
 
 
-
 var field = new Array(10);
 playField = new PlayField();
+
 playField.newPlayfield();
 playField.drawPieces();
 
