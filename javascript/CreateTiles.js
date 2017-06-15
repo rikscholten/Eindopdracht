@@ -37,9 +37,6 @@ class PlayField {
         }
     }
     drawPieces(){
-
-
-        //console.log(units[0].length)
         
         for (var y = 0; y < this.units.length; y++) {
             for (var x = 0; x < this.unitsCount[y]; x++) {
@@ -49,11 +46,6 @@ class PlayField {
     }
 
     drawPiece(x,y,piece,randomLay){
-        //
-        // this.x = x;
-        // this.y = y;
-        // this.piece = piece;
-
         
         if(!randomLay){
             var div = document.createElement("DIV");
@@ -135,6 +127,7 @@ class PlayField {
             }
         }
 
+        this.newPlayfield();
         this.drawPieces();
         
     }
