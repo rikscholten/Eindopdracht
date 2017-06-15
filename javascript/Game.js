@@ -22,6 +22,9 @@ function gameOverview()
             var id = this.id;
             div.addEventListener("click", function(){
                 console.log("dit is game: "+id+"")
+                $("#games").addClass("hidden");
+
+                $("#game").removeClass("hidden");
             });
             $('.gamelist').append(div);
 
