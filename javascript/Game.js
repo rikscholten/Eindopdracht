@@ -2,7 +2,9 @@ function submitAIGame()
 {
     setOpponent
 }
-
+var currentid='';
+var currentopponent='';
+var currentstate='';
 function gameOverview()
 {
 
@@ -20,8 +22,12 @@ function gameOverview()
             text.innerHTML='Status: '+this.state;
             div.appendChild(text);
             var id = this.id;
+            var opponent = this.opponent;
+            var state = this.state;
             div.addEventListener("click", function(){
                 console.log("dit is game: "+id+"")
+                currentid=id;
+                currentstate=state;
                 $("#games").addClass("hidden");
 
                 $("#game").removeClass("hidden");

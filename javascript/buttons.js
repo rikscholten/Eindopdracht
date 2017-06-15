@@ -53,4 +53,9 @@ $('.clear_board').on("click", function(){
 	playField.clearField();
 });
 
+$('.submit_board').on("click", function(){
+	console.log('submit');
+    playField.submitBoard();
+});
+
 /* ------END------*/

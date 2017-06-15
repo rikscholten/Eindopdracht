@@ -137,11 +137,61 @@ class PlayField {
     {
         return field[x][y];
     }
+
+    submitBoard(){
+
+        if(this.checkBoard()) {
+            if (currentopponent == 'ai')
+            {
+                var startBoard=new Array(4);
+                for(var i =0;i<4;i++)
+                {
+                    startBoard[i]=field[i+6];
+                }
+
+
+
+
+                $.ajax({
+                    url: 'https://strategoavans.herokuapp.com/api/games/'+currentid+'/start_board?api_key=' + api_key,
+                    method: 'POST',
+                    dataType: 'array',
+                    contentType: "application/json",
+                    data :JSON.stringify(startBoard),
+
+                })
+
+
+
+
+
+
+            }
+
+        }
+
+    }
+
+    checkBoard(){
+        var filled=true;
+        for (var x = 6; x < 10; x++) {
+            for (var y = 0; y < 10; y++) {
+
+                if(field[x][y]==''||field[x][y]==' ')
+                {
+                    filled=false;
+                    console.log('board is not filled')
+
+                }
+            }
+        }
+        return filled;
+    }
 }
 
 function setOpponent()
 {
-    for (var x = 0; x < 5; x++) {
+    for (var x = 0; x < 4; x++) {
         for (var y = 0; y < 10; y++) {
 
             field[x][y] = 0;
