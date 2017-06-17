@@ -28,15 +28,11 @@ function drop(ev,newx,newy) {
     // var newy = $(ev.target)[0].style.left.toString().replace('%','')/10;
 
     //controle voor verplaatsennaar water
-console.log(legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2]))
     if((legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2]))&&currentstate=='my_turn')
     {
-        console.log('legal move');
-        console.log(data)
         ev.target.appendChild(document.getElementById(data));
         field[newx][newy] = ""+piecetodrop+"";
         field[draggedpiece[0]][draggedpiece[1]] = " ";
-    console.log("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "")
         $("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "").attr("ondragstart", "drag(event," + newx + "," + newy + ",'" + draggedpiece[2] + "')");
         $("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "").attr("id","drag" + newx + "and" + newy + "");
 
@@ -57,9 +53,6 @@ console.log(legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2])
         var defenderDestroyed = false;
 
 
-
-
-
         var move = new Move(movetype,squarefrom,squareto,draggedpiece[2],defender,attackerDestroyed,defenderDestroyed)
         console.log(move);
         $.ajax({
@@ -69,7 +62,7 @@ console.log(legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2])
             data :JSON.stringify(move),
 
         }).done(function (game) {
-            console.log('submit');
+            console.log('moved');
 
         });
 
@@ -87,7 +80,6 @@ console.log(legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2])
         field[newx][newy] = ""+piecetodrop+"";
         dragged = true;
     }
-   console.log(field);
 
 }
 

@@ -127,7 +127,7 @@ class PlayField {
                 url: 'https://strategoavans.herokuapp.com/api/games/' + id + '?api_key=' + api_key
             }).done(function (game) {
 
-
+            if(game.state=='my_turn'||game.state=='game_over') {
                 for (var x = 0; x < 10; x++) {
                     for (var y = 0; y < 10; y++) {
                         me.drawPiece(x, y, '' + game.board[x][y] + '', true);
@@ -135,6 +135,7 @@ class PlayField {
 
                     }
                 }
+            }
 
 
             });
