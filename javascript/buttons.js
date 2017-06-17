@@ -21,11 +21,9 @@ $('#delete_games').on("click", function(){
 var classname = document.getElementsByClassName("game");
 
 var myFunction = function() {
-    var games = document.getElementById("games");
-	games.className += " hidden";
+    $("#games").addClass("hidden");
 
-	var game = document.getElementById("game");
-	game.className = "screen from right";
+    $("#game").removeClass("hidden");
 };
 
 for (var i = 0; i < classname.length; i++) {
@@ -34,12 +32,9 @@ for (var i = 0; i < classname.length; i++) {
 /*--------------*/
 
 $('.back_button').on("click", function(){
-	var games = document.getElementById("games");
+    $("#game").addClass("hidden");
 
-	games.className = "box screen from-left";
-
-	var game = document.getElementById("game");
-	game.className += " hidden";
+    $("#games").removeClass("hidden");
 });
 
 /* ingame buttons */
