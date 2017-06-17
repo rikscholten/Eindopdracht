@@ -25,7 +25,7 @@ class Tiles {
 		div.setAttribute("class", "tile");
 		document.getElementsByClassName("tiles")[0].appendChild(div);
 		div.setAttribute("style" , "top:" + this.y +"0%; left:" + this.x + "0%;");
-        div.setAttribute("ondrop" , "drop(event)");
+        div.setAttribute("ondrop" , "drop(event," + this.y +"," + this.x+")");
         div.setAttribute("ondragover" , "allowDrop(event)");
 	}
 

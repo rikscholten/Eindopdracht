@@ -3,33 +3,56 @@ function allowDrop(ev) {
 }
 
 var piecetodrop = 0;
+var draggedpiece = Array(3);
 var  dragged = false;
 function drag(ev,x,y,piece) {
     dragged = false;
     ev.dataTransfer.setData("text", ev.target.id);
     piecetodrop = piece;
+    if(currentstate=='my_turn')
+    {
+        console.log('x: '+x+''+' y: '+y+''+' piecetodrop: '+piecetodrop+'');
+        draggedpiece[0] = x;
+        draggedpiece[1] = y;
+        draggedpiece[2] = field[x][y];
+        console.log(draggedpiece);
+
+    }
 }
 
-function drop(ev) {
+function drop(ev,newx,newy) {
     ev.preventDefault();
+    // console.log('x: '+endx+''+' y: '+endy+'');
     var data = ev.dataTransfer.getData("text");
-    var newx = $(ev.target)[0].style.top.toString().replace('%','')/10;
-    var newy = $(ev.target)[0].style.left.toString().replace('%','')/10;
-    //controle voor verplaatsennaar water
-    // if(!((newx == 4 && newy ==2)||(newx == 4 && newy ==3)||(newx == 4 && newy ==3)||(newx == 5 && newy ==2)||(newx == 5 && newy ==3)||(newx == 4 && newy ==6)||(newx == 4 && newy ==7)||(newx == 5 && newy ==6)||(newx == 5 && newy ==7))){
-    //     ev.target.appendChild(document.getElementById(data));
-    //     field[newx][newy] = piecetodrop;
-    // }
+    // var newx = $(ev.target)[0].style.top.toString().replace('%','')/10;
+    // var newy = $(ev.target)[0].style.left.toString().replace('%','')/10;
 
-    if(currentstate=="my_turn")
+    //controle voor verplaatsennaar water
+console.log(legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2]))
+    if(legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2]))
     {
-        console.log('my turn')
+        console.log('legal move');
+        console.log(data)
+        ev.target.appendChild(document.getElementById(data));
+        field[newx][newy] = ""+piecetodrop+"";
+        field[draggedpiece[0]][draggedpiece[1]] = " ";
+console.log("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "")
+        $("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "").attr("ondragstart", "drag(event," + newx + "," + newy + ",'" + draggedpiece[2] + "')");
+        $("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "").attr("id","drag" + newx + "and" + newy + "");
+
+        dragged = true;
     }
+    else
+    {
+        console.log('illegal move');
+
+    }
+
     if((newx>5 && field[newx][newy]== ' ')&&currentstate=='waiting_for_pieces')
     {
         console.log(document.getElementById(data));
         ev.target.appendChild(document.getElementById(data));
-        field[newx][newy] = piecetodrop;
+        field[newx][newy] = ""+piecetodrop+"";
         dragged = true;
     }
    console.log(field);

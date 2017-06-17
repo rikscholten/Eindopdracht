@@ -13,7 +13,7 @@ $('#new_game').on("click", function(){
 
 
 $('#new_ai_game').on("click", function(){
-    newAIgame();
+    newGame(true);
     setTimeout(function(){gameOverview()},200);
 });
 

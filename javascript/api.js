@@ -15,13 +15,13 @@ function getgames()
 }
 
 // Maak een nieuwe game tegen de AI
-function newAIgame()
+function newGame(ai)
 {
     $.ajax({
         url: 'https://strategoavans.herokuapp.com/api/games?api_key=' + api_key,
         method: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify({ai: true})
+        data: JSON.stringify({ai: ai})
     }).done(function (game) {
         console.log('New game:', game);
     });

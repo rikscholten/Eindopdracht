@@ -63,6 +63,7 @@ class PlayField {
             
 
         var img = document.createElement("img");
+        img.setAttribute("class", "playpiece");
         this.img = img;
         if(piece==" ")
         {
@@ -90,6 +91,8 @@ class PlayField {
             img.setAttribute("ondragstart", "drag(event," + x + "," + y + "," + piece + ")");
         }
         
+        if(piece!=" ")
+        {
 
         if(randomLay){
             document.getElementsByClassName("tile")[(x*10)+y].appendChild(img);
@@ -97,6 +100,7 @@ class PlayField {
         }
         else{
             div.appendChild(img);
+        }
         }
 
     }
@@ -111,7 +115,6 @@ class PlayField {
             }
         }
 
-        this.drawPieces();
         this.newPlayfield();
         this.clearField();
 
@@ -179,18 +182,12 @@ class PlayField {
     }
 
     clearField(){
-        if(currentstate=='waiting_for_pieces') {
+        this.newPlayfield();
             $(".piece").removeClass();
             $(".draggable").removeClass();
-            for (var y = 0; y < 15; y++) {
-                for (var x = 0; x < 15; x++) {
-                    $("#drag" + x + "and" + y).remove();
-                }
-            }
+                    $(".playpiece").remove();
 
-            this.newPlayfield();
             this.drawPieces();
-        }
         
     }
 
