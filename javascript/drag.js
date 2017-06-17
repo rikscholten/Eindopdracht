@@ -36,11 +36,35 @@ console.log(legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2])
         ev.target.appendChild(document.getElementById(data));
         field[newx][newy] = ""+piecetodrop+"";
         field[draggedpiece[0]][draggedpiece[1]] = " ";
-console.log("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "")
+    console.log("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "")
         $("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "").attr("ondragstart", "drag(event," + newx + "," + newy + ",'" + draggedpiece[2] + "')");
         $("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "").attr("id","drag" + newx + "and" + newy + "");
 
         dragged = true;
+        var movetype ='move';
+        var squarefrom = new Square(draggedpiece[0],draggedpiece[1]);
+        var squareto = new Square(newx,newy);
+        var defender = '';
+        var attackerDestroyed = false;
+        var defenderDestroyed = false;
+
+
+
+
+
+        var move = new Move(movetype,squarefrom,squareto,draggedpiece[2],defender,attackerDestroyed,defenderDestroyed)
+        console.log(move);
+        $.ajax({
+            url: 'https://strategoavans.herokuapp.com/api/games/'+currentid+'/moves?api_key=' + api_key,
+            method: 'POST',
+            contentType: "application/json",
+            data :JSON.stringify(move),
+
+        }).done(function (game) {
+            console.log('submit');
+
+        });
+
     }
     else
     {
