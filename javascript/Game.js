@@ -31,32 +31,34 @@ function gameOverview()
                 text.innerHTML='Winaar: '+this.winner;
                 div.appendChild(text);
             }
-            div.addEventListener("click", function(){
-                console.log("dit is game: "+id+"")
-                currentid=id;
-                currentstate=state;
-                currentopponent=opponent;
-                playField.drawBoard(id);
-                $("#games").addClass("hidden");
+                div.addEventListener("click", function () {
+                    console.log("dit is game: " + id + "")
+                    currentid = id;
+                    currentstate = state;
+                    currentopponent = opponent;
 
-                $("#game").removeClass("hidden");
-                if(currentstate=='waiting_for_pieces')
-                {
-                    $(".randomize_pieces").show();
-                    $(".clear_board").show();
-                    $(".submit_board").show();
-                }
-                else
-                {
-                    $(".randomize_pieces").hide();
-                    $(".clear_board").hide();
-                    $(".submit_board").hide();
-                }
+                    if (!(currentstate == 'waiting_for_opponent_pieces' || currentstate == 'waiting_for_an_opponent')) {
+                        playField.drawBoard(id);
+                        $("#games").addClass("hidden");
+
+                        $("#game").removeClass("hidden");
+                        if (currentstate == 'waiting_for_pieces') {
+                            $(".randomize_pieces").show();
+                            $(".clear_board").show();
+                            $(".submit_board").show();
+                        }
+                        else {
+                            $(".randomize_pieces").hide();
+                            $(".clear_board").hide();
+                            $(".submit_board").hide();
+                        }
+                    }
+                    else
+                        {alert('EN: This Game is waiting for an opponent to act \r\n  NL:Dit spel is nog op een tegenstander aan het wachten')}
 
 
-
-            });
-            $('.gamelist').append(div);
+                });
+                $('.gamelist').append(div);
 
         });
 
