@@ -132,13 +132,13 @@ img.loading {
 }
 
 #games .game {
-    color: #eee;
+    color: #6699ff;
     font-size: 8pt;
     border-top: 1px solid gray;
     border-bottom: 1px solid black;
     padding: 10px;
     text-align: center;
-    background-color: orange;
+    background-image: url(Images/game-background.jpg);
     background-size: cover;
     background-position: 50% 40%;
     min-height: 7vh;
@@ -158,7 +158,7 @@ img.loading {
 }
 
 #games p {
-    color: green;
+    color: #6699ff;
     font-size: 15pt;
 }
 
