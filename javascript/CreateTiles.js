@@ -199,8 +199,7 @@ class PlayField {
     submitBoard(){
 
         if(this.checkBoard()) {
-            if (currentopponent == 'ai')
-            {
+
 
                 var startBoard=new Array(4);
                 for(var i =0;i<4;i++)
@@ -225,7 +224,7 @@ class PlayField {
 
             }
 
-        }
+
 
     }
 
