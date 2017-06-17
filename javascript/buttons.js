@@ -70,7 +70,9 @@ $('.submit_board').on("click", function(){
         $(".submit_board").hide();
         if(currentopponent!='ai')
         {
-            gameOverview();
+            setTimeout(function () {
+            gameOverview()
+        }, 200);
             $("#game").addClass("hidden");
 
             $("#games").removeClass("hidden");

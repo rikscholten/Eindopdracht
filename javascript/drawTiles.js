@@ -22,7 +22,7 @@ class Tiles {
 
 		var div = document.createElement("DIV");
 		this.div = div;
-		div.setAttribute("class", "tile");
+		div.setAttribute("class", "tile fieldtile");
 		document.getElementsByClassName("tiles")[0].appendChild(div);
 		div.setAttribute("style" , "top:" + this.y +"0%; left:" + this.x + "0%;");
         div.setAttribute("ondrop" , "drop(event," + this.y +"," + this.x+")");
