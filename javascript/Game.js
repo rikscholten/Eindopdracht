@@ -77,17 +77,22 @@ function legalMove(startX,startY,endX,endY,piecetodrop)
 //piece logica
     if(field[endX][endY]!="O"||field[endX][endY]!=" ")
     {
-        console.log('condition 2')
+        console.log('condition 1')
         legalmove = true;
+    }
+    if(['B', 'F'].includes(piecetodrop))
+    {
+        console.log('condition 2')
+        legalmove = false;
     }
     if(['B', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'S', 'F'].includes(field[endX][endY]))
     {
-        console.log('condition 1')
+        console.log('condition 3')
         legalmove=false;
     }
     if(((endX == 4 && endY ==2)||(endX == 4 && endY ==3)||(endX == 4 && endY ==3)||(endX == 5 && endY ==2)||(endX == 5 && endY ==3)||(endX == 4 && endY ==6)||(endX == 4 && endY ==7)||(endX == 5 && endY ==6)||(endX == 5 && endY ==7))){
 
-        console.log('condition 3')
+        console.log('condition 4')
         legalmove = false;
     }
     console.log('startX: '+startX+'  startY: '+startY+'  endX: '+endX+'  endY: '+endY+'  piecetodrop: '+piecetodrop+'')

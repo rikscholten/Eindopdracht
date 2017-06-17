@@ -66,7 +66,6 @@ $('.submit_board').on("click", function(){
         currentstate='my_turn';
         playField.submitBoard();
         setTimeout(function () {
-            playField.drawBoard(currentid)
         }, 500);
         $(".randomize_pieces").hide();
         $(".clear_board").hide();

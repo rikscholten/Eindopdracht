@@ -107,7 +107,6 @@ class PlayField {
 
 
     drawBoard(id){
-        console.log('draw')
 
         for (var y = 0; y < 15; y++) {
             for (var x = 0; x < 15; x++) {
@@ -115,38 +114,37 @@ class PlayField {
             }
         }
 
-        this.newPlayfield();
         this.clearField();
 
-        if(currentstate!='waiting_for_pieces')
-        {
+        if(currentstate!='waiting_for_pieces') {
             $(".pieces").empty();
-
-
-        //https://stackoverflow.com/questions/34642796/access-class-function-inside-ajax-success
-        var me = this;
-        $.ajax({
-            url: 'https://strategoavans.herokuapp.com/api/games/'+id+'?api_key=' + api_key
-        }).done(function (game) {
-
-
-            for (var x = 0; x < 10; x++) {
-                for (var y = 0; y < 10; y++) {
-                    me.drawPiece(x,y,''+game.board[x][y]+'', true);
-
-
-                }
-            }
-
-
-        });
         }
-        if(currentstate=='waiting_for_pieces')
-        {
+        if(currentstate!='waiting_for_opponent_pieces') {
 
-            $(".tile").empty();
-            this.newPlayfield();
-            this.clearField();
+            //https://stackoverflow.com/questions/34642796/access-class-function-inside-ajax-success
+            var me = this;
+            $.ajax({
+                url: 'https://strategoavans.herokuapp.com/api/games/' + id + '?api_key=' + api_key
+            }).done(function (game) {
+
+
+                for (var x = 0; x < 10; x++) {
+                    for (var y = 0; y < 10; y++) {
+                        me.drawPiece(x, y, '' + game.board[x][y] + '', true);
+
+
+                    }
+                }
+
+
+            });
+
+            if (currentstate == 'waiting_for_pieces') {
+
+                $(".tile").empty();
+                this.newPlayfield();
+                this.clearField();
+            }
         }
     }
 

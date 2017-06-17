@@ -29,7 +29,7 @@ function drop(ev,newx,newy) {
 
     //controle voor verplaatsennaar water
 console.log(legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2]))
-    if(legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2]))
+    if((legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2]))&&currentstate=='my_turn')
     {
         console.log('legal move');
         console.log(data)
@@ -41,10 +41,18 @@ console.log(legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2])
         $("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "").attr("id","drag" + newx + "and" + newy + "");
 
         dragged = true;
-        var movetype ='move';
+        if(field[newx,newy]=='O')
+        {
+            movetype ='attack';
+
+        }
+        else{
+            var movetype ='move';
+
+        }
         var squarefrom = new Square(draggedpiece[0],draggedpiece[1]);
         var squareto = new Square(newx,newy);
-        var defender = '';
+        var defender = field[newx,newy];
         var attackerDestroyed = false;
         var defenderDestroyed = false;
 
