@@ -103,14 +103,23 @@ class PlayField {
 
 
     drawBoard(id){
+        console.log('draw')
+
         for (var y = 0; y < 15; y++) {
             for (var x = 0; x < 15; x++) {
                 $("#drag"+x+"and"+y).remove();
             }
         }
 
-        this.newPlayfield();
         this.drawPieces();
+        this.newPlayfield();
+        this.clearField();
+
+        if(currentstate!='waiting_for_pieces')
+        {
+            $(".pieces").empty();
+
+
         //https://stackoverflow.com/questions/34642796/access-class-function-inside-ajax-success
         var me = this;
         $.ajax({
@@ -128,8 +137,14 @@ class PlayField {
 
 
         });
-        $(".pieces").empty();
-        return 'x'
+        }
+        if(currentstate=='waiting_for_pieces')
+        {
+
+            $(".tile").empty();
+            this.newPlayfield();
+            this.clearField();
+        }
     }
 
 

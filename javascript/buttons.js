@@ -32,6 +32,7 @@ for (var i = 0; i < classname.length; i++) {
 /*--------------*/
 
 $('.back_button').on("click", function(){
+    setTimeout(function(){gameOverview()},400);
     $("#game").addClass("hidden");
 
     $("#games").removeClass("hidden");
@@ -61,6 +62,9 @@ $('.submit_board').on("click", function(){
         setTimeout(function () {
             playField.drawBoard(currentid)
         }, 500);
+        $(".randomize_pieces").hide();
+        $(".clear_board").hide();
+        $(".submit_board").hide();
     }
 });
 

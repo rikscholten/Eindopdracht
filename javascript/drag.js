@@ -20,7 +20,12 @@ function drop(ev) {
     //     ev.target.appendChild(document.getElementById(data));
     //     field[newx][newy] = piecetodrop;
     // }
-    if(newx>5 && field[newx][newy]== ' ')
+
+    if(currentstate=="my_turn")
+    {
+        console.log('my turn')
+    }
+    if((newx>5 && field[newx][newy]== ' ')&&currentstate=='waiting_for_pieces')
     {
         console.log(document.getElementById(data));
         ev.target.appendChild(document.getElementById(data));
@@ -38,7 +43,8 @@ function dragstopped(ev,t) {
 
     }
     else{
-        console.log('false')}
+        console.log('false')
+    }
     ev.preventDefault();
 }
 

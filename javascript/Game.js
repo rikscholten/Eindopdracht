@@ -29,9 +29,25 @@ function gameOverview()
                 currentid=id;
                 currentstate=state;
                 currentopponent=opponent;
+                playField.drawBoard(id);
                 $("#games").addClass("hidden");
 
                 $("#game").removeClass("hidden");
+                if(currentstate=='waiting_for_pieces')
+                {
+                    $(".randomize_pieces").show();
+                    $(".clear_board").show();
+                    $(".submit_board").show();
+                }
+                else
+                {
+                    $(".randomize_pieces").hide();
+                    $(".clear_board").hide();
+                    $(".submit_board").hide();
+                }
+
+
+
             });
             $('.gamelist').append(div);
 
