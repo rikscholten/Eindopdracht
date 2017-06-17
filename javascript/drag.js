@@ -15,7 +15,6 @@ function drag(ev,x,y,piece) {
         draggedpiece[0] = x;
         draggedpiece[1] = y;
         draggedpiece[2] = field[x][y];
-        console.log(draggedpiece);
 
     }
 }
@@ -28,28 +27,29 @@ function drop(ev,newx,newy) {
     // var newy = $(ev.target)[0].style.left.toString().replace('%','')/10;
 
     //controle voor verplaatsennaar water
-console.log(legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2]))
-    if(legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2]))
+    if((legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2]))&&currentstate=='my_turn')
     {
-        console.log('legal move');
-        console.log(data)
         ev.target.appendChild(document.getElementById(data));
         field[newx][newy] = ""+piecetodrop+"";
         field[draggedpiece[0]][draggedpiece[1]] = " ";
-    console.log("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "")
         $("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "").attr("ondragstart", "drag(event," + newx + "," + newy + ",'" + draggedpiece[2] + "')");
         $("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "").attr("id","drag" + newx + "and" + newy + "");
 
         dragged = true;
-        var movetype ='move';
+        if(field[newx,newy]=='O')
+        {
+            movetype ='attack';
+
+        }
+        else{
+            var movetype ='move';
+
+        }
         var squarefrom = new Square(draggedpiece[0],draggedpiece[1]);
         var squareto = new Square(newx,newy);
-        var defender = '';
+        var defender = field[newx,newy];
         var attackerDestroyed = false;
         var defenderDestroyed = false;
-
-
-
 
 
         var move = new Move(movetype,squarefrom,squareto,draggedpiece[2],defender,attackerDestroyed,defenderDestroyed)
@@ -59,9 +59,6 @@ console.log(legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2])
             method: 'POST',
             contentType: "application/json",
             data :JSON.stringify(move),
-
-        }).done(function (game) {
-            console.log('submit');
 
         });
 
@@ -79,7 +76,6 @@ console.log(legalMove(draggedpiece[0],draggedpiece[1],newx,newy,draggedpiece[2])
         field[newx][newy] = ""+piecetodrop+"";
         dragged = true;
     }
-   console.log(field);
 
 }
 

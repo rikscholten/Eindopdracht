@@ -1,14 +1,12 @@
-document.getElementById("new_game").addEventListener("click", function(){ 
-	var div = document.createElement('div');
 
-	div.className = 'game waiting_for_opponent';
-
-	document.getElementsByClassName('gamelist')[0].appendChild(div);
-});
 
 $('#new_game').on("click", function(){
-    newGame(false);
-    setTimeout(function(){gameOverview()},200);
+    if(newgameCheck()) {
+        newGame(false);
+        setTimeout(function () {
+            gameOverview()
+        }, 200);
+    }
 });
 
 
@@ -63,14 +61,22 @@ $('.clear_board').on("click", function(){
 
 $('.submit_board').on("click", function(){
 	if(currentstate=='waiting_for_pieces') {
-        currentstate='my_turn';
         playField.submitBoard();
-        setTimeout(function () {
-            playField.drawBoard(currentid)
-        }, 500);
+        // setTimeout(function () {
+        // }, 500);
+
         $(".randomize_pieces").hide();
         $(".clear_board").hide();
         $(".submit_board").hide();
+        if(currentopponent!='ai')
+        {
+            setTimeout(function () {
+            gameOverview()
+        }, 200);
+            $("#game").addClass("hidden");
+
+            $("#games").removeClass("hidden");
+        }
     }
 });
 

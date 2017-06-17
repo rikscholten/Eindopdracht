@@ -67,7 +67,6 @@ class PlayField {
         this.img = img;
         if(piece==" ")
         {
-            console.log('empty');
         }
         else if(piece=='O')
         {
@@ -75,20 +74,22 @@ class PlayField {
 
         }
         else {
-            img.setAttribute("src", "Images/red_" + piece + ".png");
-            img.setAttribute("id", "drag" + x + "and" + y);
-            img.setAttribute("draggable", "true");
-            img.setAttribute("ondragend", "dragstopped(event,this)");
+            $(img).attr({
+                src: "Images/red_" + piece + ".png",
+                id: "drag" + x + "and" + y,
+                draggable: "true",
+                ondragend: "dragstopped(event,this)"
+        });
         }
 
 
         if((piece=='B')||(piece=='S')||(piece=='F'))
         {
-            img.setAttribute("ondragstart", "drag(event," + x + "," + y + ",'" + piece + "')");
+            $(img).attr("ondragstart", "drag(event," + x + "," + y + ",'" + piece + "')");
 
         }
         else {
-            img.setAttribute("ondragstart", "drag(event," + x + "," + y + "," + piece + ")");
+            $(img).attr("ondragstart", "drag(event," + x + "," + y + "," + piece + ")");
         }
         
         if(piece!=" ")
@@ -107,7 +108,6 @@ class PlayField {
 
 
     drawBoard(id){
-        console.log('draw')
 
         for (var y = 0; y < 15; y++) {
             for (var x = 0; x < 15; x++) {
@@ -115,38 +115,39 @@ class PlayField {
             }
         }
 
-        this.newPlayfield();
-        this.clearField();
 
-        if(currentstate!='waiting_for_pieces')
-        {
+        if(currentstate!='waiting_for_pieces') {
             $(".pieces").empty();
+        }
+        if(currentstate!='waiting_for_opponent_pieces') {
+
+            //https://stackoverflow.com/questions/34642796/access-class-function-inside-ajax-success
+            var me = this;
+            $.ajax({
+                'async': false,
+                url: 'https://strategoavans.herokuapp.com/api/games/' + id + '?api_key=' + api_key
+            }).done(function (game) {
+
+                $(".fieldtile").empty();
+            if(game.state=='my_turn'||game.state=='game_over'|| game.state == 'opponent_turn' ) {
+                for (var x = 0; x < 10; x++) {
+                    for (var y = 0; y < 10; y++) {
+                        me.drawPiece(x, y, '' + game.board[x][y] + '', true);
 
 
-        //https://stackoverflow.com/questions/34642796/access-class-function-inside-ajax-success
-        var me = this;
-        $.ajax({
-            url: 'https://strategoavans.herokuapp.com/api/games/'+id+'?api_key=' + api_key
-        }).done(function (game) {
-
-
-            for (var x = 0; x < 10; x++) {
-                for (var y = 0; y < 10; y++) {
-                    me.drawPiece(x,y,''+game.board[x][y]+'', true);
-
-
+                    }
                 }
             }
 
 
-        });
-        }
-        if(currentstate=='waiting_for_pieces')
-        {
+            });
 
-            $(".tile").empty();
-            this.newPlayfield();
-            this.clearField();
+            if (currentstate == 'waiting_for_pieces') {
+
+                $(".tile").empty();
+                this.newPlayfield();
+                this.clearField();
+            }
         }
     }
 
