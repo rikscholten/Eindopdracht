@@ -67,7 +67,6 @@ class PlayField {
         this.img = img;
         if(piece==" ")
         {
-            console.log('empty');
         }
         else if(piece=='O')
         {
@@ -127,7 +126,7 @@ class PlayField {
                 url: 'https://strategoavans.herokuapp.com/api/games/' + id + '?api_key=' + api_key
             }).done(function (game) {
 
-            if(game.state=='my_turn'||game.state=='game_over') {
+            if(game.state=='my_turn'||game.state=='game_over'|| game.state == 'opponent_turn' ) {
                 for (var x = 0; x < 10; x++) {
                     for (var y = 0; y < 10; y++) {
                         me.drawPiece(x, y, '' + game.board[x][y] + '', true);

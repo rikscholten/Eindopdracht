@@ -15,7 +15,6 @@ function drag(ev,x,y,piece) {
         draggedpiece[0] = x;
         draggedpiece[1] = y;
         draggedpiece[2] = field[x][y];
-        console.log(draggedpiece);
 
     }
 }
@@ -60,9 +59,6 @@ function drop(ev,newx,newy) {
             method: 'POST',
             contentType: "application/json",
             data :JSON.stringify(move),
-
-        }).done(function (game) {
-            console.log('moved');
 
         });
 

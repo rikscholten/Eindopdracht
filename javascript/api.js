@@ -3,16 +3,7 @@
 var api_key = 'eNA67yFTZ3FV5xVTRnrbK8bfyAkoOIQJ';
 
 // Haal games op
-function getgames()
-{
-    $.ajax({
-        url: 'https://strategoavans.herokuapp.com/api/games?api_key=' + api_key
-    }).done(function (gamess) {
 
-
-    });
-
-}
 
 // Maak een nieuwe game tegen de AI
 function newGame(ai)
@@ -33,6 +24,7 @@ function newGame(ai)
         console.log('game overvie change');
         gameOverview();
 
+        console.log('game.state: '+game.state)
         if((game.id==currentid) ) {
             currentstate=game.state;
             if ((game.state == 'my_turn' || game.state == 'game_over')) {
@@ -40,14 +32,34 @@ function newGame(ai)
                     currentstate = 'game_over';
                 }
                 playField.drawBoard(currentid);
-                console.log('Game changed:', game);
             }
         }
 
     });
 
 
-socket.on('move', function(move) {
-    console.log('Move:', move);
-})
 
+
+
+function newgameCheck()
+{
+    var returnbool= function() {
+        var tmp = true;
+        $.ajax({
+            'async': false,
+            'url': 'https://strategoavans.herokuapp.com/api/games?api_key=' + api_key,
+            'success': function (gamess) {
+                $(gamess).each(function (game) {
+                    console.log(this.state)
+                    if (this.state == 'waiting_for_an_opponent') {
+                        console.log('already searching for opponent');
+                        tmp = false;
+                    }
+                })
+            }
+        });
+        return tmp;
+    }();
+console.log('returnbool: '+returnbool)
+return returnbool;
+}
