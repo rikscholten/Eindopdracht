@@ -3,17 +3,6 @@ class gameHistory {
 	constructor(){
 		
 	}
-
-
-	updateHistory(){
-		getMoves();	
-	}
-
-
-
-
-
-
 }
 
 socket.on('move', function(move) {
