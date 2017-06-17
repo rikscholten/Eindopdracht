@@ -6,6 +6,12 @@ document.getElementById("new_game").addEventListener("click", function(){
 	document.getElementsByClassName('gamelist')[0].appendChild(div);
 });
 
+$('#new_game').on("click", function(){
+    newGame(false);
+    setTimeout(function(){gameOverview()},200);
+});
+
+
 $('#new_ai_game').on("click", function(){
     newAIgame();
     setTimeout(function(){gameOverview()},200);
