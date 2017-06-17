@@ -19,11 +19,18 @@ function gameOverview()
             text.innerHTML='Opponent: '+this.opponent;
             div.appendChild(text);
             var text = document.createElement('p');
-            text.innerHTML='Status: '+this.state;
+            text.innerHTML='Status: '+this.state.split('_').join(' ');;
             div.appendChild(text);
             var id = this.id;
             var opponent = this.opponent;
             var state = this.state;
+            if(this.winner!=undefined)
+            {
+
+                var text = document.createElement('p');
+                text.innerHTML='Winaar: '+this.winner;
+                div.appendChild(text);
+            }
             div.addEventListener("click", function(){
                 console.log("dit is game: "+id+"")
                 currentid=id;
