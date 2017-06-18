@@ -47,7 +47,7 @@ function drop(ev,newx,newy) {
         }
         var squarefrom = new Square(draggedpiece[0],draggedpiece[1]);
         var squareto = new Square(newx,newy);
-        var defender = field[newx,newy];
+        var defender = field[newx][newy];
         var attackerDestroyed = false;
         var defenderDestroyed = false;
 
