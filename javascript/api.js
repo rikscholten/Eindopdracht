@@ -9,6 +9,7 @@ var api_key = 'eNA67yFTZ3FV5xVTRnrbK8bfyAkoOIQJ';
 function newGame(ai)
 {
     $.ajax({
+        'async': false,
         url: 'https://strategoavans.herokuapp.com/api/games?api_key=' + api_key,
         method: 'POST',
         contentType: 'application/json',
@@ -24,7 +25,7 @@ function newGame(ai)
         console.log('game overvie change');
         gameOverview();
 
-        console.log('game.state: '+game.state)
+        console.log('game.state: '+game.state);
         if((game.id==currentid) ) {
             currentstate=game.state;
             if ((game.state == 'my_turn' || game.state == 'game_over')) {
