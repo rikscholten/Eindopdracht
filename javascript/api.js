@@ -19,8 +19,11 @@ function newGame(ai)
     });
 }
 
-    var socket = io.connect('https://strategoavans.herokuapp.com/', {query: 'api_key=' + api_key});
 
+    var socket = io.connect('https://strategoavans.herokuapp.com/', {query: 'api_key=' + api_key});
+socket.on('connect', function() {
+    console.log('Connected')
+})
     socket.on('statechange', function(game) {
         console.log('game overvie change');
         gameOverview();
