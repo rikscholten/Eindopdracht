@@ -5,6 +5,7 @@ function allowDrop(ev) {
 var piecetodrop = 0;
 var draggedpiece = Array(3);
 var  dragged = false;
+
 function drag(ev,x,y,piece) {
     dragged = false;
     ev.dataTransfer.setData("text", ev.target.id);
@@ -36,13 +37,14 @@ function drop(ev,newx,newy) {
         $("#drag" + draggedpiece[0] + "and" + draggedpiece[1] + "").attr("id","drag" + newx + "and" + newy + "");
 
         dragged = true;
+        var movetype ='';
         if(field[newx,newy]=='O')
         {
             movetype ='attack';
 
         }
         else{
-            var movetype ='move';
+            movetype ='move';
 
         }
         var squarefrom = new Square(draggedpiece[0],draggedpiece[1]);

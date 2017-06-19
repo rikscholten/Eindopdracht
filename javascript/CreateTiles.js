@@ -108,6 +108,8 @@ class PlayField {
 
 
     drawBoard(id){
+        showGames();
+        showHistory();
 
         for (var y = 0; y < 15; y++) {
             for (var x = 0; x < 15; x++) {

@@ -418,3 +418,32 @@ img.loading {
     transform: perspective( 1000px ) rotateY(0deg)
   }
 }
+
+ol {
+    display: block;
+    list-style-type: decimal;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+
+li {
+    font-size: 20px;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+#history li {
+    padding-left: 5px;
+    list-style-position: inside;
+}
+
+.red{
+    color: rgb(255,0,0);
+}
+
+.blue{
+    color: rgb(0,0,255);
+}

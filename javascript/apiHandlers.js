@@ -1,4 +1,4 @@
-function showgames()
+function showGames()
 {
     $.ajax({
         url: 'https://strategoavans.herokuapp.com/api/games?api_key=' + api_key
