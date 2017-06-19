@@ -53,10 +53,10 @@ function showHistory()
 
 				for (var i = 0; i < playField.units.length; i++) {
 	            	if(playField.units[i] == this.attacker){
-	            		displayAttacker = unitNames[i];
+	            		displayAttacker = unitNames[i]+" ("+i+")";
 	            	}
 	            	if(playField.units[i] == this.defender){
-	            		displayDefender = unitNames[i];
+	            		displayDefender = unitNames[i]+" ("+i+")";
 	            	}
 	            };
 
