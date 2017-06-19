@@ -30,7 +30,6 @@ function gameOverview()
                 div.appendChild(text);
             }
                 div.addEventListener("click", function () {
-                    $('#placing_pieces').find('p')[0].innerHTML="";
 
                     currentstate = me.state;
                     currentid = me.id;
@@ -62,7 +61,7 @@ function gameOverview()
                         }
                         if (me.state == 'game_over') {
 
-                            $('.winner_game').append("<p>Winner: "+me.winner+"</p>");
+                            $('.winner_game').empty().append("<p>Winner: "+me.winner+"</p>");
                             $('.winner_game').show();
                         }
                         else
