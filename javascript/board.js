@@ -28,14 +28,6 @@ class PlayField {
 
     }
 
-    testField(){
-        
-        for (var y = 0; y < 10; y++) {
-            for (var x = 0; x < 10; x++) {
-                // console.log(field[x][y]);
-            }
-        }
-    }
     drawPieces(){
         
         for (var y = 0; y < this.units.length; y++) {
@@ -178,26 +170,17 @@ class PlayField {
             }
         }
 
-
-
-        this.unitsCount = [[6], [1], [1], [2], [3], [4], [4], [4], [5], [8], [1], [1]];
-        this.testField();
-        
+        this.unitsCount = [[6], [1], [1], [2], [3], [4], [4], [4], [5], [8], [1], [1]];        
     }
 
     clearField(){
         this.newPlayfield();
-            $(".piece").removeClass();
-            $(".draggable").removeClass();
-                    $(".playpiece").remove();
+        $(".piece").removeClass();
+        $(".draggable").removeClass();
+                $(".playpiece").remove();
 
-            this.drawPieces();
+        this.drawPieces();
         
-    }
-
-    gettilePiece(x,y)
-    {
-        return field[x][y];
     }
 
     submitBoard(){

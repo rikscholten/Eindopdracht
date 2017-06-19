@@ -7,10 +7,11 @@ function showHistory()
         $.ajax({
             url: 'https://strategoavans.herokuapp.com/api/games/' + currentid + '/moves?api_key=' + api_key
         }).done(function (moves) {
+            console.log(moves);
             if(moves[0]!=undefined) {
                 $("ol").empty();
                 var firstplayer = false;
-                if (moves[0].square.column > 5) {
+                if (moves[0].square.row > 5) {
                     firstplayer = true;
                 }
                 jQuery.each(moves, function (move) {
