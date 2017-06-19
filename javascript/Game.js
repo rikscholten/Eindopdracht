@@ -43,11 +43,14 @@ function gameOverview()
 
                         $("#game").removeClass("hidden");
                         if (currentstate == 'waiting_for_pieces') {
+                            $('#placing_pieces').find('h1')[0].innerHTML="Pieces";
+
                             $(".randomize_pieces").show();
                             $(".clear_board").show();
                             $(".submit_board").show();
                         }
                         else {
+                            $('#placing_pieces').find('h1')[0].innerHTML="Information";
                             $(".randomize_pieces").hide();
                             $(".clear_board").hide();
                             $(".submit_board").hide();
@@ -85,7 +88,6 @@ function legalMove(startX,startY,endX,endY,piecetodrop)
     var legalmove = false;
     var movedX =endX-startX;
     var movedY =endY-startY;
-    console.log('movedX: '+movedX+' movedY: '+movedY);
 //piece logica
     if(field[endX][endY]!="O"||field[endX][endY]!=" ")
     {
@@ -94,44 +96,44 @@ function legalMove(startX,startY,endX,endY,piecetodrop)
     }
     if(['B', 'F'].includes(piecetodrop))
     {
-        console.log('condition 2')
+        console.log("Illegal move: Bombs & Flags can't move")
         legalmove = false;
     }
     if(['B', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'S', 'F'].includes(field[endX][endY]))
     {
-        console.log('condition 3')
+        console.log("Illegal move: Can't move to/attack your own pieces")
         legalmove=false;
     }
     if([ '1', '2', '3', '4', '5', '6', '7', '8', 'S'].includes(piecetodrop))
     {
         if(movedX>1||movedX<-1)
         {
-            console.log('condition 4')
+            console.log("Illegal move: Only a scout can move more than 1 space")
             legalmove=false;
         }
         if(movedY>1||movedY<-1)
         {
-            console.log('condition 5')
+            console.log("Illegal move: Only a scout can move more than 1 space")
             legalmove=false;
         }
         if(movedY==1&movedX!=0)
         {
-            console.log('condition 5')
+            console.log("Illegal move: Can't move diagonally (normal piece)")
             legalmove=false;
         }
         if(movedY==-1&movedX!=0)
         {
-            console.log('condition 5')
+            console.log("Illegal move: Can't move diagonally (normal piece)")
             legalmove=false;
         }
         if(movedX==1&movedY!=0)
         {
-            console.log('condition 5')
+            console.log("Illegal move: Can't move diagonally (normal piece)")
             legalmove=false;
         }
         if(movedX==-1&movedY!=0)
         {
-            console.log('condition 5')
+            console.log("Illegal move: Can't move diagonally (normal piece)")
             legalmove=false;
         }
 
@@ -143,17 +145,14 @@ function legalMove(startX,startY,endX,endY,piecetodrop)
     console.log('verkenner');
         if(movedX<0 && movedY==0)
         {
-            console.log('move up');;
-            console.log('startY: '+startY)
             for(var i=startX-1;i>endX;i--) {
-                console.log('i: ' + i + '   startY: ' + startY)
                 if (!checkwater(i, startY))
                 {
                     return false
             }
                 if(field[i][startY]!=" ")
                 {
-                    console.log('move over another piece')
+                    console.log("Illegal move: Scout can't move over another piece (direction: up)")
                     legalmove=false;
                 }
             }
@@ -161,20 +160,15 @@ function legalMove(startX,startY,endX,endY,piecetodrop)
         }
         if(movedY>0 && movedX==0)
         {
-            console.log('move right');
-            console.log('startY: '+startY)
             for(var i=startY+1;i<endY;i++)
             {
-                console.log(i)
-                console.log('startX: '+startX)
-                console.log(checkwater(i,startY));
                 if (!checkwater(startX,i))
                 {
                     return false
                 }
                 if(field[startX][i]!=" ")
                 {
-                    console.log('move over another piece')
+                    console.log("Illegal move: Scout can't move over another piece (direction: right)")
                     legalmove=false;
                 }
             }
@@ -182,19 +176,15 @@ function legalMove(startX,startY,endX,endY,piecetodrop)
         }
         if(movedX>0 && movedY==0)
         {
-            console.log('move down');
-            console.log('startX: '+startX)
             for(var i=startX+1;i<endX;i++)
             {
-                console.log(i)
-                console.log('startY: '+startY)
                 if (!checkwater(i,startY))
                 {
                     return false
                 }
                 if(field[i][startY]!=" ")
                 {
-                    console.log('move over another piece: '+field[startY][i])
+                    console.log("Illegal move: Scout can't move over another piece (direction: down)")
                     legalmove=false;
                 }
             }
@@ -202,21 +192,15 @@ function legalMove(startX,startY,endX,endY,piecetodrop)
         }
         if(movedY<0 && movedX==0)
         {
-            console.log('move left');
-            console.log('startY: '+startY)
-            console.log('movedY: '+movedY*-1)
             for(var i=startY-1;i>endY;i--)
             {
-                console.log(checkwater(i,startY));
-                console.log(i)
-                console.log('i: '+i+'   startX: '+startX)
                 if (!checkwater(startX,i))
                 {
                     return false
                 }
                 if(field[startX][i]!=" ")
                 {
-                    console.log('move over another piece: '+field[startX][i])
+                    console.log("Illegal move: Scout can't move over another piece (direction: left)")
                     legalmove=false;
                 }
             }
@@ -224,32 +208,31 @@ function legalMove(startX,startY,endX,endY,piecetodrop)
         }
         if(movedY>0&movedX!=0)
         {
-            console.log('condition 5')
+            console.log("Illegal move: Scout can't move diagonally")
             legalmove=false;
         }
         if(movedY<0&movedX!=0)
         {
-            console.log('condition 5')
+            console.log("Illegal move: Scout can't move diagonally")
             legalmove=false;
         }
         if(movedX>0&movedY!=0)
         {
-            console.log('condition 5')
+            console.log("Illegal move: Scout can't move diagonally")
             legalmove=false;
         }
         if(movedX<0&movedY!=0)
         {
-            console.log('condition 5')
+            console.log("Illegal move: Scout can't move diagonally")
             legalmove=false;
         }
     }
-
+//water
     if(((endX == 4 && endY ==2)||(endX == 4 && endY ==3)||(endX == 4 && endY ==3)||(endX == 5 && endY ==2)||(endX == 5 && endY ==3)||(endX == 4 && endY ==6)||(endX == 4 && endY ==7)||(endX == 5 && endY ==6)||(endX == 5 && endY ==7))){
 
-        console.log('condition 7')
+        console.log("Illegal move: Can't move to water")
         legalmove = false;
     }
-    console.log('startX: '+startX+'  startY: '+startY+'  endX: '+endX+'  endY: '+endY+'  piecetodrop: '+piecetodrop+'')
     return legalmove;
 }
 
@@ -270,7 +253,7 @@ function checkwater(endX,endY)
 {
     if(((endX == 4 && endY ==2)||(endX == 4 && endY ==3)||(endX == 4 && endY ==3)||(endX == 5 && endY ==2)||(endX == 5 && endY ==3)||(endX == 4 && endY ==6)||(endX == 4 && endY ==7)||(endX == 5 && endY ==6)||(endX == 5 && endY ==7))){
 
-        console.log('condition 7')
+        console.log("Illegal move: can't move trough water")
         return false;
     }
     return true;

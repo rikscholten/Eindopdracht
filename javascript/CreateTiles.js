@@ -131,8 +131,8 @@ class PlayField {
             }).done(function (game) {
 
                 $(".fieldtile").empty();
-                if(this.board!=undefined) {
-                    field = this.board;
+                if(game.board!=undefined) {
+                    field = game.board;
                 }
             if(game.state=='my_turn'||game.state=='game_over'|| game.state == 'opponent_turn' ) {
                 for (var x = 0; x < 10; x++) {
