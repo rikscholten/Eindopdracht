@@ -21,9 +21,7 @@ function gameOverview()
             var text = document.createElement('p');
             text.innerHTML='Status: '+this.state.split('_').join(' ');;
             div.appendChild(text);
-            var id = this.id;
-            var opponent = this.opponent;
-            var state = this.state;
+            var me = this;
             if(this.winner!=undefined)
             {
 
@@ -32,34 +30,45 @@ function gameOverview()
                 div.appendChild(text);
             }
                 div.addEventListener("click", function () {
-                    console.log("dit is game: " + id + "")
-                    currentid = id;
-                    currentstate = state;
-                    currentopponent = opponent;
+                    console.log("dit is game: " + me.id + "")
 
-                    if (!(currentstate == 'waiting_for_opponent_pieces' || currentstate == 'waiting_for_an_opponent')) {
-                        playField.drawBoard(id);
+                    currentstate = me.state;
+                    currentid = me.id;
+                    currentopponent = me.opponent;
+                    if (!(me.state == 'waiting_for_opponent_pieces' || me.state == 'waiting_for_an_opponent')) {
+                        playField.drawBoard(me.id);
                         $("#games").addClass("hidden");
 
                         $("#game").removeClass("hidden");
                         if (currentstate == 'waiting_for_pieces') {
                             $('#placing_pieces').find('h1')[0].innerHTML="Pieces";
-
+                            $('.player_turn').hide();
+                            $('.winner_game').hide();
                             $(".randomize_pieces").show();
                             $(".clear_board").show();
                             $(".submit_board").show();
                         }
                         else {
-                            if(currentstate !='waiting_for_pieces'&&currentstate !='waiting_for_opponent_pieces' )
+                            if(me.state !='waiting_for_pieces'&&me.state !='waiting_for_opponent_pieces' )
                             {
 
-                                $('.player_turn').empty().append("<p>Game Status (turn): "+currentstate+"</p>");
+                                $('.player_turn').empty().append("<p>Game Status (turn): "+me.state+"</p>");
                                 $('.player_turn').show();
                             }
                             $('#placing_pieces').find('h1')[0].innerHTML="Information";
                             $(".randomize_pieces").hide();
                             $(".clear_board").hide();
                             $(".submit_board").hide();
+                        }
+                        if (me.state == 'game_over') {
+
+                            $('.winner_game').append("<p>Winner: "+me.winner+"</p>");
+                            $('.winner_game').show();
+                        }
+                        else
+                        {
+                            $('.winner_game').hide();
+
                         }
                     }
                     else

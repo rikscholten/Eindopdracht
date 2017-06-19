@@ -25,7 +25,7 @@ socket.on('connect', function() {
     console.log('Connected')
 })
     socket.on('statechange', function(game) {
-        console.log('game overvie change');
+        console.log('game overview change');
         gameOverview();
 
         console.log('game.state: '+game.state);
