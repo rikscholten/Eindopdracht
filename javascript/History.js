@@ -8,20 +8,43 @@ function showHistory()
         url: 'https://strategoavans.herokuapp.com/api/games/' + currentid + '/moves?api_key=' + api_key
     }).done(function (moves) {
         $("ol").empty();
-
+        var firstplayer=false;
+if(moves[0].square.column>5)
+{
+    firstplayer = true;
+}
         jQuery.each(moves, function(move) {
 
 			if(this.attacker == undefined){
 
 				var span = document.createElement('span');
 				if(isEven(move)){
+					if(firstplayer)
+					{
 					span.className = "red";
 					span.innerHTML = "Red";
+                    }
+                    else
+					{
+                        span.className = "blue";
+                        span.innerHTML = "Blue";
+
+					}
 
 				}
 				else{
-					span.className = "blue";
-					span.innerHTML = "Blue";
+                    if(!firstplayer)
+                    {
+                        span.className = "red";
+                        span.innerHTML = "Red";
+                    }
+                    else
+                    {
+                        span.className = "blue";
+                        span.innerHTML = "Blue";
+
+                    }
+
 				}
             	var li = document.createElement('li');
             	li.className = "move";
@@ -66,12 +89,30 @@ function showHistory()
 				spanDef.innerHTML = displayDefender;
 
 				if(isEven(move)){
-					spanAtk.className = "red";
-					spanDef.className = "blue";
+                    if(firstplayer)
+                    {
+                        spanAtk.className = "red";
+                        spanDef.className = "blue";
+                    }
+                    else
+                    {
+                        spanAtk.className = "blue";
+                        spanDef.className = "red";
+
+                    }
 				}
 				else{
-					spanAtk.className = "blue";
-					spanDef.className = "red";
+                    if(firstplayer)
+                    {
+                        spanAtk.className = "blue";
+                        spanDef.className = "red";
+                    }
+                    else
+                    {
+                        spanAtk.className = "red";
+                        spanDef.className = "blue";
+
+                    }
 				
 				}
 

@@ -30,6 +30,7 @@ function gameOverview()
                 div.appendChild(text);
             }
                 div.addEventListener("click", function () {
+                    $('#placing_pieces').find('p')[0].innerHTML="";
 
                     currentstate = me.state;
                     currentid = me.id;
