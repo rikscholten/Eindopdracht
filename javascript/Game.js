@@ -30,7 +30,6 @@ function gameOverview()
                 div.appendChild(text);
             }
                 div.addEventListener("click", function () {
-                    console.log("dit is game: " + me.id + "")
 
                     currentstate = me.state;
                     currentid = me.id;
@@ -106,7 +105,7 @@ function legalMove(startX,startY,endX,endY,piecetodrop)
 //piece logica
     if(field[endX][endY]!="O"||field[endX][endY]!=" ")
     {
-        console.log('condition 1')
+        console.log('legal move')
         legalmove = true;
     }
     if(['B', 'F'].includes(piecetodrop))

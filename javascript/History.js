@@ -7,13 +7,14 @@ function showHistory()
     $.ajax({
         url: 'https://strategoavans.herokuapp.com/api/games/' + currentid + '/moves?api_key=' + api_key
     }).done(function (moves) {
+        $("ol").empty();
+
         jQuery.each(moves, function(move) {
 
 			if(this.attacker == undefined){
 
 				var span = document.createElement('span');
 				if(isEven(move)){
-					console.log("hi");
 					span.className = "red";
 					span.innerHTML = "Red";
 
@@ -84,7 +85,6 @@ function showHistory()
 
 
         });
-		console.log(moves);
 
     });
 }

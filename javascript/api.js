@@ -28,7 +28,6 @@ socket.on('connect', function() {
         console.log('game overview change');
         gameOverview();
 
-        console.log('game.state: '+game.state);
         if((game.id==currentid) ) {
             currentstate=game.state;
             updateInfo(game)
@@ -40,8 +39,6 @@ socket.on('connect', function() {
 
 function updateInfo(game)
 {
-    console.log(game)
-    console.log(game.state)
     if(game.state !='waiting_for_pieces'&&game.state !='waiting_for_opponent_pieces' )
     {
 
@@ -79,7 +76,6 @@ function newgameCheck()
             'url': 'https://strategoavans.herokuapp.com/api/games?api_key=' + api_key,
             'success': function (gamess) {
                 $(gamess).each(function (game) {
-                    console.log(this.state)
                     if (this.state == 'waiting_for_an_opponent') {
                         console.log('already searching for opponent');
                         tmp = false;
@@ -89,6 +85,5 @@ function newgameCheck()
         });
         return tmp;
     }();
-console.log('returnbool: '+returnbool)
 return returnbool;
 }

@@ -77,8 +77,7 @@ class PlayField {
             $(img).attr({
                 src: "Images/red_" + piece + ".png",
                 id: "drag" + x + "and" + y,
-                draggable: "true",
-                ondragend: "dragstopped(event,this)"
+                draggable: "true"
         });
         }
 
@@ -108,7 +107,6 @@ class PlayField {
 
 
     drawBoard(id){
-        showGames();
         showHistory();
 
         for (var y = 0; y < 15; y++) {
@@ -222,7 +220,6 @@ class PlayField {
                     data :JSON.stringify(startBoard),
 
                 }).done(function (game) {
-                    console.log('submit');
 
                 });
 
@@ -247,7 +244,6 @@ class PlayField {
                 }
             }
         }
-        console.log('filled: '+filled)
         return filled;
     }
 }

@@ -47,7 +47,6 @@ $('.back_button').on("click", function(){
 $('.randomize_pieces').on( "click", function(){
 
     if(currentstate=='waiting_for_pieces') {
-        console.log('test')
         playField.randomLayout();
     }
 });

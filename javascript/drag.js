@@ -12,7 +12,6 @@ function drag(ev,x,y,piece) {
     piecetodrop = piece;
     if(currentstate=='my_turn')
     {
-        console.log('x: '+x+''+' y: '+y+''+' piecetodrop: '+piecetodrop+'');
         draggedpiece[0] = x;
         draggedpiece[1] = y;
         draggedpiece[2] = field[x][y];
@@ -55,7 +54,6 @@ function drop(ev,newx,newy) {
 
 
         var move = new Move(movetype,squarefrom,squareto,draggedpiece[2],defender,attackerDestroyed,defenderDestroyed)
-        console.log(move);
         $.ajax({
             url: 'https://strategoavans.herokuapp.com/api/games/'+currentid+'/moves?api_key=' + api_key,
             method: 'POST',
@@ -73,7 +71,6 @@ function drop(ev,newx,newy) {
 
     if((newx>5 && field[newx][newy]== ' ')&&currentstate=='waiting_for_pieces')
     {
-        console.log(document.getElementById(data));
         ev.target.appendChild(document.getElementById(data));
         field[newx][newy] = ""+piecetodrop+"";
         dragged = true;
@@ -81,15 +78,4 @@ function drop(ev,newx,newy) {
 
 }
 
-function dragstopped(ev,t) {
-    if(dragged)
-    {
-        console.log('true')
-
-    }
-    else{
-        console.log('false')
-    }
-    ev.preventDefault();
-}
 
