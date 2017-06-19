@@ -71,12 +71,13 @@ $('.submit_board').on("click", function(){
         if(currentopponent!='ai')
         {
             setTimeout(function () {
-            gameOverview()
-        }, 200);
-            $("#game").addClass("hidden");
+            gameOverview();
+                $("#game").addClass("hidden");
 
-            $("#games").removeClass("hidden");
+                $("#games").removeClass("hidden");
+        }, 500);
         }
+
     }
 });
 
