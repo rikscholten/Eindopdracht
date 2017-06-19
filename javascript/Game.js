@@ -50,6 +50,12 @@ function gameOverview()
                             $(".submit_board").show();
                         }
                         else {
+                            if(currentstate !='waiting_for_pieces'&&currentstate !='waiting_for_opponent_pieces' )
+                            {
+
+                                $('.player_turn').empty().append("<p>Game Status (turn): "+currentstate+"</p>");
+                                $('.player_turn').show();
+                            }
                             $('#placing_pieces').find('h1')[0].innerHTML="Information";
                             $(".randomize_pieces").hide();
                             $(".clear_board").hide();

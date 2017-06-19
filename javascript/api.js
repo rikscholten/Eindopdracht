@@ -31,32 +31,44 @@ socket.on('connect', function() {
         console.log('game.state: '+game.state);
         if((game.id==currentid) ) {
             currentstate=game.state;
-            if(game.state)
-            {
-
-                $('.player_turn').empty().append("<p>Game Status (turn): "+game.state+"</p>");
-                $('.player_turn').show();
-            }
-            if ((game.state == 'my_turn' || game.state == 'game_over')) {
-                if (game.state == 'game_over') {
-                    currentstate = 'game_over';
-                    $('.winner_game').append("<p>Winner: "+game.winner+"</p>");
-                    $('.winner_game').show();
-                }
-                else
-                {
-                    $('.winner_game').hide();
-                }
-
-                playField.drawBoard(currentid);
-            }
+            updateInfo(game)
         }
 
     });
 
 
 
+function updateInfo(game)
+{
+    console.log(game)
+    console.log(game.state)
+    if(game.state !='waiting_for_pieces'&&game.state !='waiting_for_opponent_pieces' )
+    {
 
+        $('.player_turn').empty().append("<p>Game Status (turn): "+game.state+"</p>");
+        $('.player_turn').show();
+    }
+    if ((game.state == 'my_turn' || game.state == 'game_over' || game.state == 'opponent_turn')) {
+        if (game.state == 'game_over') {
+            currentstate = 'game_over';
+            $('.winner_game').append("<p>Winner: "+game.winner+"</p>");
+            $('.winner_game').show();
+        }
+        else
+        {
+            $('#placing_pieces').find('h1')[0].innerHTML="Information";
+            $('.winner_game').hide();
+        }
+
+        playField.drawBoard(currentid);
+    }
+    if(game.state =='waiting_for_pieces' ||game.state =='waiting_for_opponent_pieces' )
+    {
+
+        $('.player_turn').hide();
+        $('.winner_game').hide();
+    }
+}
 
 function newgameCheck()
 {
