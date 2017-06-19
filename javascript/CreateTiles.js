@@ -131,7 +131,9 @@ class PlayField {
             }).done(function (game) {
 
                 $(".fieldtile").empty();
-                field= this.board;
+                if(this.board!=undefined) {
+                    field = this.board;
+                }
             if(game.state=='my_turn'||game.state=='game_over'|| game.state == 'opponent_turn' ) {
                 for (var x = 0; x < 10; x++) {
                     for (var y = 0; y < 10; y++) {
@@ -264,7 +266,6 @@ function setOpponent()
 
 var field = new Array(10);
 playField = new PlayField();
-
 playField.newPlayfield();
 playField.drawPieces();
 
